@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import './App.css';
+import DefaultLayout from './components/DefaultLayout';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { responsiveFontSizes } from "@mui/material";
+import { theme } from './utils/useThemeStyles';
+import HomePage from './views/HomePage';
 
 function App() {
+
+  const responsiveTheme = responsiveFontSizes(theme);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={responsiveTheme}>
+      <StyledEngineProvider injectFirst>
+        <BrowserRouter>
+          <DefaultLayout>
+            <Routes>
+              <Route path='/' element={<HomePage />} />
+            </Routes>
+          </DefaultLayout>
+        </BrowserRouter>
+      </StyledEngineProvider>
+    </ThemeProvider>
   );
 }
 

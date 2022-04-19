@@ -27,12 +27,12 @@ export const theme = createTheme({
             fontSize: '1.125rem'
         },
         subtitle1: {
-            fontSize: '1rem'
+            fontSize: '1rem',
+            fontWeight: 500
         },
         body1: {
             fontSize: '1rem'
         }
     },
 })
-console.log(theme);
 

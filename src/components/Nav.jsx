@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { AppBar, Avatar, Box, Drawer, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import { MenuRounded, CloseRounded } from '@mui/icons-material';
-import { BottomLinerListItem, ContainerStyles, NavListItemTypo } from '../utils/useCustomerComponentStyles'
+import { ContainerStyles, NavListItemTypo } from '../utils/useCustomerComponentStyles'
 import companyLogo from '../public/svg/company-logo.svg'
 
 const menuItems = [
@@ -33,12 +33,12 @@ const menuItems = [
         path: '/contact'
     }
 ]
-
 const useStyles = makeStyles(theme => ({
     appBar: {
         display: 'flex',
         justifyContent: 'center',
-        background: 'rgba(0,0,0,0)',
+        background: 'rgba(255,255,255)',
+        zIndex: 5000,
         [theme.breakpoints.up("xs")]: {
             height: 52
         },
@@ -90,13 +90,6 @@ const useStyles = makeStyles(theme => ({
             paddingBottom: 24,
         },
     },
-    // listItemActive: {
-    //     color: 'var(--primary60)',
-    //     '& div h5:hover::before': {
-    //         transition: 'all ease-in 250ms',
-    //         width: '100%',
-    //     },
-    // },
     drawer: {
         [theme.breakpoints.up("xs")]: {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '60%' },
@@ -116,27 +109,15 @@ const useStyles = makeStyles(theme => ({
         },
     },
 }))
-
-// const ListItems = ({ getBar, classes, handleMenuItemClick }) => (
-//     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
-//         {menuItems.map((menu) => (
-//             <BottomLinerListItem components='a' key={menu.name} className={classes.listItem} onClick={() => handleMenuItemClick(menu.path)}>
-//                 <ListItemText sx={{ margin: 0 }} ><Typography variant='h5' >{menu.title}</Typography></ListItemText>
-//             </BottomLinerListItem>
-//         ))}
-//     </List>
-// )
-
 const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
-            <ListItem components='a' key={menu.name} onClick={() => handleMenuItemClick(menu.path)}>
+            <ListItem component='a' key={menu.name} onClick={() => handleMenuItemClick(menu.path)}>
                 <NavListItemTypo variant='subtitle1' component='h6' className={currentPath === menu.path && classes.linkFocus}>{menu.title}</NavListItemTypo>
             </ListItem>
         ))}
     </List>
 )
-
 const MenuIcons = ({ classes, menuIcon, handleMenuIcon }) => (
     <IconButton aria-label="open drawer" edge="start" onClick={handleMenuIcon} className={classes.iconState}>
         {menuIcon ? <CloseRounded style={{ fontSize: 24 }} /> : <MenuRounded style={{ fontSize: 24 }} />}
@@ -145,7 +126,16 @@ const MenuIcons = ({ classes, menuIcon, handleMenuIcon }) => (
 
 function Nav() {
     const classes = useStyles()
-
+    // top
+    const handleOnTop = () => document.documentElement.scrollTo(0, 0)
+    // const goToTop = () => { topRef.current.scrollTop = 0 }
+    //重整頁面回到頂部
+    window.onbeforeunload = function () {
+        document.documentElement.scrollTop = 0;  //ie
+        document.body.scrollTop = 0;  //非ie
+    }
+    // 獲得當前路徑
+    let currentPath = useLocation().pathname
     // 更換頁面
     let navigate = useNavigate()
     const handleMenuItemClick = (getPath) => {
@@ -153,17 +143,14 @@ function Nav() {
             setMenuIcon(false)
         }
         navigate(getPath)
+        handleOnTop()
+        // goToTop()
     }
-
-    // 獲得當前路徑
-    let currentPath = useLocation().pathname
-
     // 側邊bar按鈕
     const [menuIcon, setMenuIcon] = useState(false)
-    const handleMenuIcon = () => setMenuIcon(pre => !pre)
-
+    const handleMenuIcon = () => setMenuIcon && setMenuIcon(pre => !pre)
+    //window width < 904 側邊出現
     const [getBar, setGetBar] = useState(false)
-
     const showBtn = () => {
         if (document.documentElement.clientWidth <= 904) {
             setGetBar(true)
@@ -172,7 +159,6 @@ function Nav() {
             setMenuIcon(false)
         }
     }
-
     useEffect(() => {
         showBtn()
         window.addEventListener('resize', showBtn)
@@ -182,7 +168,7 @@ function Nav() {
     }, [])
 
     return (
-        <AppBar className={classes.appBar} position='static' elevation={1}>
+        <AppBar className={classes.appBar} elevation={1}>
             <ContainerStyles disableGutters className={classes.container}>
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
@@ -190,13 +176,11 @@ function Nav() {
                         <Typography variant="h5" sx={{ color: 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
                     </Box>
                     {getBar === false &&
-                        // <ListItems getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} />
                         <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} />
                     }
                     <MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} />
-                    <Drawer anchor='right' variant="temporary" open={menuIcon} onBackdropClick ModalProps={{ keepMounted: true }} className={classes.drawer}>
+                    <Drawer anchor='right' variant="temporary" open={menuIcon} ModalProps={{ keepMounted: true }} className={classes.drawer}>
                         <Box className={classes.listIcon}><MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} /></Box>
-                        {/* <ListItems getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} /> */}
                         <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} />
                     </Drawer>
                 </Toolbar>

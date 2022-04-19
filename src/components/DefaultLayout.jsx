@@ -10,10 +10,10 @@ function DefaultLayout({ children }) {
         //     {children}
         //     <Footer />
         // </div>
-        <Grid direction="column">
+        <Grid container direction="column">
             <CssBaseline />
             <Grid item><Nav /></Grid>
-            <Grid item>{children}</Grid>
+            <Grid item sx={{ marginTop: '100px' }}>{children}</Grid>
             <Grid item><Footer /></Grid>
         </Grid>
     )

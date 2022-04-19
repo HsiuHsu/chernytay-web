@@ -15,7 +15,10 @@
     --neutral40: #5D5F5A;
     --neutral60: #8C9387;
     --neutral80: #C6C7C1;
-    --on-background: #FCFCF6;
+    --neutral90: #E2E3DC;
+    --neutral95: #F1F1EB;
+    --surface: #FCFCF6;
     --surface-variant: #DFE5D8;
     --on-surface-variant: #42493F;
+    --outline: #73796F;
 }

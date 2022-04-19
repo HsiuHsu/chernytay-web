@@ -1,0 +1,520 @@
+{
+    "smallSizedAirConditionImg": [
+        {
+            "id": "smallSize1",
+            "name": "分離式冷氣室外機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "分離式冷氣室外機"
+        },
+        {
+            "id": "smallSize2",
+            "name": "分離式冷氣室外機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "分離式冷氣室外機 (2)"
+        },
+        {
+            "id": "smallSize3",
+            "name": "分離式冷氣室外機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "分離式冷氣室外機 (3)"
+        },
+        {
+            "id": "smallSize4",
+            "name": "分離式冷氣銅配管",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "分離式冷氣銅配管"
+        },
+        {
+            "id": "smallSize5",
+            "name": "分離式室外機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "分離式室外機"
+        },
+        {
+            "id": "smallSize6",
+            "name": "四方吹分離式室內機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "四方吹分離式室內機"
+        },
+        {
+            "id": "smallSize7",
+            "name": "吊隱式室內機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "吊隱式室內機"
+        },
+        {
+            "id": "smallSize8",
+            "name": "吊隱冷氣線型出風口",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "吊隱冷氣線型出風口"
+        },
+        {
+            "id": "smallSize9",
+            "name": "室外管槽安裝",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "室外管槽安裝"
+        },
+        {
+            "id": "smallSize10",
+            "name": "室外管槽安裝",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "室外管槽安裝 (2)"
+        },
+        {
+            "id": "smallSize11",
+            "name": "壁掛室內機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "壁掛室內機"
+        },
+        {
+            "id": "smallSize12",
+            "name": "壁掛室內機加裝排水器",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "壁掛室內機加裝排水器"
+        },
+        {
+            "id": "smallSize13",
+            "name": "雙風扇分離式冷氣室外機",
+            "imgUrl": "air-conditioner-small-sized/",
+            "imgName": "雙風扇分離式冷氣室外機"
+        }
+    ],
+    "bigSizedAirConditionImg": [
+        {
+            "id": "bigSize1",
+            "name": "方形冷卻水塔",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "方形冷卻水塔"
+        },
+        {
+            "id": "bigSize2",
+            "name": "水冷式空調室內送風機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "水冷式空調室內送風機"
+        },
+        {
+            "id": "bigSize3",
+            "name": "主機配管工程",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "主機配管工程"
+        },
+        {
+            "id": "bigSize4",
+            "name": "主機配管鋁皮包覆",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "主機配管鋁皮包覆"
+        },
+        {
+            "id": "bigSize5",
+            "name": "全熱交換氣",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "全熱交換氣"
+        },
+        {
+            "id": "bigSize6",
+            "name": "多聯吊隱室內機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "多聯吊隱室內機"
+        },
+        {
+            "id": "bigSize7",
+            "name": "多聯式室外機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "多聯式室外機"
+        },
+        {
+            "id": "bigSize8",
+            "name": "多聯式室外機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "多聯式室外機 (2)"
+        },
+        {
+            "id": "bigSize9",
+            "name": "空調室內送風機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "空調室內送風機"
+        },
+        {
+            "id": "bigSize10",
+            "name": "空調室內送風機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "空調室內送風機 (2)"
+        },
+        {
+            "id": "bigSize11",
+            "name": "空調送風機配管",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "空調送風機配管"
+        },
+        {
+            "id": "bigSize12",
+            "name": "室內送風機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "室內送風機"
+        },
+        {
+            "id": "bigSize13",
+            "name": "氣冷式主機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式主機"
+        },
+        {
+            "id": "bigSize14",
+            "name": "氣冷式冰水主機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式冰水主機"
+        },
+        {
+            "id": "bigSize15",
+            "name": "氣冷式冰水主機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式冰水主機 (2)"
+        },
+        {
+            "id": "bigSize16",
+            "name": "氣冷式冰水主機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式冰水主機 (3)"
+        },
+        {
+            "id": "bigSize17",
+            "name": "氣冷式冰水主機 配管",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式冰水主機 配管"
+        },
+        {
+            "id": "bigSize18",
+            "name": "氣冷式室外機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式室外機"
+        },
+        {
+            "id": "bigSize19",
+            "name": "氣冷式室外機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷式室外機 (2)"
+        },
+        {
+            "id": "bigSize20",
+            "name": "氣冷箱型室內機",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷箱型室內機"
+        },
+        {
+            "id": "bigSize21",
+            "name": "氣冷箱型訂製風管",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷箱型訂製風管"
+        },
+        {
+            "id": "bigSize22",
+            "name": "氣冷箱型訂製風管",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "氣冷箱型訂製風管 (2)"
+        },
+        {
+            "id": "bigSize23",
+            "name": "配電工程",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "配電工程"
+        },
+        {
+            "id": "bigSize24",
+            "name": "圓形冷卻水塔及泵補",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "圓形冷卻水塔及泵補"
+        },
+        {
+            "id": "bigSize25",
+            "name": "輕鋼架行格柵可調出風口",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "輕鋼架行格柵可調出風口"
+        },
+        {
+            "id": "bigSize26",
+            "name": "輕鋼架型擴散出風口",
+            "imgUrl": "air-conditioner-big-sized/",
+            "imgName": "輕鋼架型擴散出風口"
+        }
+    ],
+    "repairAirConditionImg": [
+        {
+            "id": "repairImg1",
+            "name": "水塔皮帶更換",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "水塔皮帶更換"
+        },
+        {
+            "id": "repairImg2",
+            "name": "水塔皮帶更換",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "水塔皮帶更換 (2)"
+        },
+        {
+            "id": "repairImg3",
+            "name": "水塔浮球開關更新前",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "水塔浮球開關更新前"
+        },
+        {
+            "id": "repairImg4",
+            "name": "水塔浮球開關更新後",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "水塔浮球開關更新後"
+        },
+        {
+            "id": "repairImg5",
+            "name": "水塔散熱材更換前",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "水塔散熱材更換前"
+        },
+        {
+            "id": "repairImg6",
+            "name": "水塔散熱材更換後",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "水塔散熱材更換後"
+        },
+        {
+            "id": "repairImg7",
+            "name": "冷媒填充",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "冷媒填充"
+        },
+        {
+            "id": "repairImg8",
+            "name": "空調冰水管保溫破損",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "空調冰水管保溫破損"
+        },
+        {
+            "id": "repairImg9",
+            "name": "空調冰水管保溫破損修復",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "空調冰水管保溫破損修復"
+        },
+        {
+            "id": "repairImg10",
+            "name": "逆止閥更新前",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "逆止閥更新前"
+        },
+        {
+            "id": "repairImg11",
+            "name": "逆止閥更新後",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "逆止閥更新後"
+        },
+        {
+            "id": "repairImg12",
+            "name": "乾燥過濾器更換前",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "乾燥過濾器更換前"
+        },
+        {
+            "id": "repairImg13",
+            "name": "乾燥過濾器更換後",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "乾燥過濾器更換後"
+        },
+        {
+            "id": "repairImg14",
+            "name": "箱型冷氣皮帶斷裂維修前",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "箱型冷氣皮帶斷裂維修前"
+        },
+        {
+            "id": "repairImg15",
+            "name": "箱型冷氣皮帶斷裂維修後",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "箱型冷氣皮帶斷裂維修後"
+        },
+        {
+            "id": "repairImg16",
+            "name": "蝶閥更新前",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "蝶閥更新前"
+        },
+        {
+            "id": "repairImg17",
+            "name": "蝶閥更新後",
+            "imgUrl": "air-conditioner-repair/",
+            "imgName": "蝶閥更新後"
+        }
+    ],
+    "maintainAirConditionImg": [
+        {
+            "id": "maintainImg1",
+            "name": "40RT冰水主機藥洗",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "40RT冰水主機藥洗-1"
+        },
+        {
+            "id": "maintainImg2",
+            "name": "分離式吊隱冷氣保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "分離式吊隱冷氣保養"
+        },
+        {
+            "id": "maintainImg3",
+            "name": "分離式室外機保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "分離式室外機保養"
+        },
+        {
+            "id": "maintainImg4",
+            "name": "水塔消音毯更換前",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔消音毯更換前"
+        },
+        {
+            "id": "maintainImg5",
+            "name": "水塔消音毯更換後",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔消音毯更換後"
+        },
+        {
+            "id": "maintainImg6",
+            "name": "水塔清洗前",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔清洗前1"
+        },
+        {
+            "id": "maintainImg7",
+            "name": "水塔清洗中",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔清洗中1"
+        },
+        {
+            "id": "maintainImg8",
+            "name": "水塔清洗後",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔清洗後1"
+        },
+        {
+            "id": "maintainImg9",
+            "name": "水塔散熱材清洗前",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔散熱材清洗前"
+        },
+        {
+            "id": "maintainImg10",
+            "name": "水塔散熱材清洗後",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "水塔散熱材清洗後"
+        },
+        {
+            "id": "maintainImg11",
+            "name": "主機更換冷凍油",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "主機更換冷凍油"
+        },
+        {
+            "id": "maintainImg12",
+            "name": "主機保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "主機保養"
+        },
+        {
+            "id": "maintainImg13",
+            "name": "主機保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "主機保養 (2)"
+        },
+        {
+            "id": "maintainImg14",
+            "name": "主機藥洗保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "主機藥洗保養"
+        },
+        {
+            "id": "maintainImg15",
+            "name": "主機藥洗保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "主機藥洗保養 (2)"
+        },
+        {
+            "id": "maintainImg16",
+            "name": "空調箱保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "空調箱保養"
+        },
+        {
+            "id": "maintainImg17",
+            "name": "室內送風機保養前",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "室內送風機保養前"
+        },
+        {
+            "id": "maintainImg18",
+            "name": "室內送風機保養中",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "室內送風機保養中"
+        },
+        {
+            "id": "maintainImg19",
+            "name": "室內送風機保養後",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "室內送風機保養後"
+        },
+        {
+            "id": "maintainImg20",
+            "name": "氣冷式外機清洗保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "氣冷式外機清洗保養"
+        },
+        {
+            "id": "maintainImg21",
+            "name": "氣冷式外機清洗保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "氣冷式外機清洗保養 (2)"
+        },
+        {
+            "id": "maintainImg22",
+            "name": "熱泵保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "熱泵保養"
+        },
+        {
+            "id": "maintainImg23",
+            "name": "熱泵藥洗",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "熱泵藥洗"
+        },
+        {
+            "id": "maintainImg24",
+            "name": "箱型冷氣保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "箱型冷氣保養1"
+        },
+        {
+            "id": "maintainImg25",
+            "name": "箱型冷氣保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "箱型冷氣保養2"
+        },
+        {
+            "id": "maintainImg26",
+            "name": "箱型冷氣藥洗保養",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "箱型冷氣藥洗保養"
+        },
+        {
+            "id": "maintainImg27",
+            "name": "壁掛分離式冷氣拆解清洗",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "壁掛分離式冷氣拆解清洗"
+        },
+        {
+            "id": "maintainImg28",
+            "name": "壁掛風鼓清洗前",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "壁掛風鼓清洗前"
+        },
+        {
+            "id": "maintainImg29",
+            "name": "壁掛風鼓清洗後",
+            "imgUrl": "air-conditioner-maintain/",
+            "imgName": "壁掛風鼓清洗後"
+        }
+    ]
+}

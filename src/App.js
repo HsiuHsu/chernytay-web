@@ -5,8 +5,9 @@ import { responsiveFontSizes } from "@mui/material";
 import { theme } from './utils/useThemeStyles';
 import DefaultLayout from './components/DefaultLayout';
 import HomePage from './views/HomePage';
-import About from './views/About';
-import Faq from './views/Faq';
+import AboutPage from './views/AboutPage';
+import WorkPage from './views/WorkPage';
+import FaqPage from './views/FaqPage';
 
 function App() {
 
@@ -19,8 +20,10 @@ function App() {
           <DefaultLayout>
             <Routes>
               <Route path='/' element={<HomePage />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/faq' element={<Faq />} />
+              <Route path='/about' element={<AboutPage />} />
+              <Route path='/work' element={<WorkPage />} />
+
+              <Route path='/faq' element={<FaqPage />} />
             </Routes>
           </DefaultLayout>
         </BrowserRouter>

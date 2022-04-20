@@ -19,8 +19,8 @@ const menuItems = [
     },
     {
         title: '工程實績',
-        name: 'achievement',
-        path: '/achievement'
+        name: 'work',
+        path: '/work'
     },
     {
         title: '常見問題',
@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         background: 'rgba(255,255,255)',
-        zIndex: 5000,
         [theme.breakpoints.up("xs")]: {
             height: 52
         },

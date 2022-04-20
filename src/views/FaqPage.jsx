@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-function Faq() {
+function FaqPage() {
     const classes = useStyles()
     const handleClick = (e) => {
         e.preventDefault()
@@ -62,4 +62,4 @@ function Faq() {
     )
 }
 
-export default Faq
+export default FaqPage

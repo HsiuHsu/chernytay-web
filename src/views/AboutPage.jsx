@@ -75,7 +75,7 @@ const anim = keyframes`
   }
 `;
 
-function About() {
+function AboutPage() {
     const classes = useStyles()
     const theme = useTheme();
 
@@ -114,4 +114,4 @@ function About() {
     )
 }
 
-export default About
+export default AboutPage

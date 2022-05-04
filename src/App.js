@@ -8,6 +8,7 @@ import HomePage from './views/HomePage';
 import AboutPage from './views/AboutPage';
 import WorkPage from './views/WorkPage';
 import FaqPage from './views/FaqPage';
+import WorkImagePage from './views/WorkImagePage';
 
 function App() {
 
@@ -22,7 +23,10 @@ function App() {
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
               <Route path='/work' element={<WorkPage />} />
-
+              <Route path='/work/small-sized-air-condition' element={<WorkImagePage />} />
+              <Route path='/work/big-sized-air-condition' element={<WorkImagePage />} />
+              <Route path='/work/air-condition-repair' element={<WorkImagePage />} />
+              <Route path='/work/air-condition-maintain' element={<WorkImagePage />} />
               <Route path='/faq' element={<FaqPage />} />
             </Routes>
           </DefaultLayout>

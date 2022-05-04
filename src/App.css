@@ -8,6 +8,7 @@
 }
 
 :root {
+    --primary20: #003A01;
     --primary40: #2D6B28;
     --primary60: #5FA055;
     --primary90: #AEF4A0;
@@ -21,4 +22,5 @@
     --surface-variant: #DFE5D8;
     --on-surface-variant: #42493F;
     --outline: #73796F;
+    --white: #fff;
 }

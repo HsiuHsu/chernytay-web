@@ -1,15 +1,20 @@
+/** @jsxImportSource @emotion/react */
+import { jsx, css, keyframes } from "@emotion/react";
 import React, { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Grid, List, Skeleton, Stack, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import WorkGalleryCard from '../components/WorkGalleryCard'
+import { useTheme } from "@mui/material/styles";
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
+import WorkImageCard from "../components/WorkImageCard";
 
 const workGalleryInfo = [
     {
         imgUrl: '小型空調',
         imgName: '分離式冷氣室外機',
         galleryTitle: '小型空調',
-        gallerySubtitle: '依照客戶的需求及空間大小，規劃空調的擺放位置與噸數。'
+        gallerySubtitle: '依照客戶的需求及空間大小，規劃空調的擺放位置與噸數。',
+        img: '/assets/image/分離式冷氣室外機.jpg'
     },
     {
         imgUrl: '大型空調',
@@ -104,17 +109,66 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+const anim = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
 function WorkPage() {
     const classes = useStyles()
+    const theme = useTheme()
+    // 圖片加載時
+    const [imageIsLoading, setImageIsLoading] = useState(true);
+    const [image, setImage] = useState({});
+    const handleImageLoaded = () => {
+        setImageIsLoading(false);
+    };
+    // 相簿路徑
+    let navigate = useNavigate()
+    const handleImgClick = (e) => {
+        const getName = e.target.alt
+        if (getName === '分離式冷氣室外機')
+            navigate('/work/small-sized-air-condition')
+        if (getName === '多聯式室外機')
+            navigate('/work/big-sized-air-condition')
+        if (getName === '乾燥過濾器更換後')
+            navigate('/work/air-condition-repair')
+        if (getName === '熱泵保養')
+            navigate('/work/air-condition-maintain')
+    }
+    // 圖片加載時
+    useEffect(() => {
+        const image = new Image();
+        image.onload = handleImageLoaded;
+        image.src = '/image/分離式冷氣室外機.jpg'
+        setImage(image);
+    }, []);
+
     return (
         <>
-            <div style={{ paddingTop: 56, paddingBottom: 152, backgroundImage: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }}>
+            <div style={{ paddingTop: 56, paddingBottom: 152, backgroundImage: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }}
+                css={css`animation: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
+            >
                 <ContainerStyles disableGutters>
                     <Typography variant='h1' component='h1' className={classes.workTitle}>Work</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>工程紀錄</Typography>
                     <Grid container spacing={2} >
                         {
-                            workGalleryInfo.map(item => (<Grid item xs={12} sm={6} md={4} xl={4}><WorkGalleryCard key={item.imgName} imgUrl={item.imgUrl} imgName={item.imgName} galleryTitle={item.galleryTitle} gallerySubtitle={item.gallerySubtitle} /></Grid>))
+                            workGalleryInfo.map(item => (
+                                <Grid item xs={12} sm={6} md={4} xl={4} key={item.imgName}>
+                                    <WorkImageCard
+                                        imgUrl={item.imgUrl} imgName={item.imgName} imageIsLoading={imageIsLoading}
+                                        galleryTitle={item.galleryTitle} gallerySubtitle={item.gallerySubtitle}
+                                        handleImgClick={(e) => handleImgClick(e)}
+                                    // image='/image/分離式冷氣室外機.jpg'
+                                    // image={`require(${smallSizedAirPic})`}
+                                    // image={`url('../public/img/空調維修/水塔皮帶更換.jpg')`}
+                                    />
+                                </Grid>))
                         }
                     </Grid>
                 </ContainerStyles>

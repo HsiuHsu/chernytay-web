@@ -112,7 +112,7 @@ const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
             <ListItem component='a' key={menu.name} onClick={() => handleMenuItemClick(menu.path)}>
-                <NavListItemTypo variant='subtitle1' component='h6' className={currentPath === menu.path && classes.linkFocus}>{menu.title}</NavListItemTypo>
+                <NavListItemTypo variant='subtitle1' component='h6' className={currentPath.includes(menu.path) && classes.linkFocus}>{menu.title}</NavListItemTypo>
             </ListItem>
         ))}
     </List>

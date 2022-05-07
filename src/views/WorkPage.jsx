@@ -140,7 +140,7 @@ function WorkPage() {
         if (getName === '熱泵保養')
             navigate('/work/air-condition-maintain')
     }
-    // 圖片加載時
+    // 圖片加載
     useEffect(() => {
         const image = new Image();
         image.onload = handleImageLoaded;
@@ -154,7 +154,7 @@ function WorkPage() {
                 css={css`animation: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
             >
                 <ContainerStyles disableGutters>
-                    <Typography variant='h1' component='h1' className={classes.workTitle}>Work</Typography>
+                    <Typography variant='h1' component='h2' className={classes.workTitle}>Work</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>工程紀錄</Typography>
                     <Grid container spacing={2} >
                         {
@@ -164,9 +164,6 @@ function WorkPage() {
                                         imgUrl={item.imgUrl} imgName={item.imgName} imageIsLoading={imageIsLoading}
                                         galleryTitle={item.galleryTitle} gallerySubtitle={item.gallerySubtitle}
                                         handleImgClick={(e) => handleImgClick(e)}
-                                    // image='/image/分離式冷氣室外機.jpg'
-                                    // image={`require(${smallSizedAirPic})`}
-                                    // image={`url('../public/img/空調維修/水塔皮帶更換.jpg')`}
                                     />
                                 </Grid>))
                         }
@@ -175,7 +172,7 @@ function WorkPage() {
             </div>
             <div style={{ margin: '112px 0', background: 'var(--surface)' }}>
                 <ContainerStyles disableGutters className={classes.customerGroup}>
-                    <Typography variant='h1' component='h1' sx={{ position: 'absolute', top: -40 }} className={classes.workTitle}>Customer</Typography>
+                    <Typography variant='h1' component='h2' sx={{ position: 'absolute', top: -40 }} className={classes.workTitle}>Customer</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>優質客戶</Typography>
                     <List className={classes.customerListGroup}>
                         {

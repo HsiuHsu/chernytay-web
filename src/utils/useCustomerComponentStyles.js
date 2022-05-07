@@ -1,37 +1,5 @@
-import { styled } from '@mui/system';
-import { ListItem, Container, Typography } from '@mui/material'
-
-// export const BottomLinerListItem = styled(ListItem)(({ theme }) => ({
-//     cursor: 'pointer',
-//     textAlign: 'center',
-//     position: 'relative',
-//     color: 'var(--neutral20)',
-//     '& div h5:hover': { color: 'var(--primary60)' },
-//     [theme.breakpoints.up("xs")]: {
-//         paddingTop: 24,
-//         paddingBottom: 24,
-//     },
-//     [theme.breakpoints.up("md")]: {
-//         padding: '12px 0',
-//         marginLeft: 36,
-//         '& div h5:active': {
-//             color: 'var(--primary60)',
-//         },
-//         '& div h5::before': {
-//             position: 'absolute',
-//             content: '""',
-//             display: 'block',
-//             height: 2,
-//             background: 'var(--primary60)',
-//             bottom: -2,
-//             width: 0
-//         },
-//         '& div h5:hover::before': {
-//             transition: 'all ease-in 250ms',
-//             width: '100%',
-//         },
-//     },
-// }))
+import { styled, alpha } from '@mui/system'
+import { ListItem, Container, Typography, TextField } from '@mui/material'
 
 export const NavListItemTypo = styled(Typography)(({ theme }) => ({
     color: 'var(--neutral20)',
@@ -79,4 +47,27 @@ export const ContainerStyles = styled(Container)(({ theme }) => ({
         maxWidth: 1128,
         width: '100%'
     },
+}))
+
+export const CustomerTextField = styled(TextField)(({ theme }) => ({
+    '& .MuiInputBase-input': {
+        color: 'var(--neutral20)',
+        borderRadius: 4,
+        position: 'relative',
+        border: 0,
+        backgroundColor: 'var(--neutral99)',
+        padding: '12px 16px',
+        transition: theme.transitions.create([
+            'border-color',
+            'background-color',
+            'box-shadow',
+        ]),
+        '&:focus': {
+            boxShadow: `${alpha('#5FA055', 0.25)} 0 0 0 0.2rem`,
+            border: '1px solid var(--primary60)',
+        },
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+        border: 0,
+    }
 }))

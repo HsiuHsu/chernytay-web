@@ -9,6 +9,7 @@ import AboutPage from './views/AboutPage';
 import WorkPage from './views/WorkPage';
 import FaqPage from './views/FaqPage';
 import WorkImagePage from './views/WorkImagePage';
+import ContactUsPage from './views/ContactUsPage';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
               <Route path='/work/air-condition-repair' element={<WorkImagePage />} />
               <Route path='/work/air-condition-maintain' element={<WorkImagePage />} />
               <Route path='/faq' element={<FaqPage />} />
+              <Route path='/contact' element={<ContactUsPage />} />
             </Routes>
           </DefaultLayout>
         </BrowserRouter>

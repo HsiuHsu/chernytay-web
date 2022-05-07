@@ -90,7 +90,7 @@ function AboutPage() {
             <ContainerStyles disableGutters css={css`animation: ${anim} 1000ms ${theme.transitions.easing.easeInOut};`}>
                 <div style={{ height: 650, display: 'flex', alignItems: 'center' }}>
                     <Grid container className={classes.aboutContainer} spacing={3}>
-                        <Typography variant='h1' component='h1' className={classes.aboutTitle}>About Us</Typography>
+                        <Typography variant='h1' component='h2' className={classes.aboutTitle}>About Us</Typography>
                         <Grid item xs={10} className={classes.aboutItems} >
                             <Grid item xs={8} sx={{ paddingLeft: 9, paddingTop: 7 }}>
                                 <Typography variant='subtitle1' className={classes.aboutSubtitle}>關於成泰</Typography>

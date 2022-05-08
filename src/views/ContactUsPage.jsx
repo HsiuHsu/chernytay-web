@@ -92,7 +92,7 @@ const ContactForm = ({ classes }) => {
         {
             inputLable: '電話*',
             id: 'input-phone',
-            type: 'phone',
+            type: 'tel',
             name: 'entry.1404911985',
             placeholder: '例 : 09-12-345-678',
         },
@@ -119,9 +119,8 @@ const ContactForm = ({ classes }) => {
         },
     ]
     return (
-        <Box component='form' noValidate autoComplete='off' method='post' sx={{ padding: '48px 96px', boxShadow: '0px 1px 3px rgba(0,0,0,0.25)' }}
-            action='https://docs.google.com/forms/u/0/d/e/1FAIpQLSearVe5J1MuUlRiciuKxCPESmx38nOCApXW4V9FELTJwr_lqQ/formResponse'
-        >
+        <form target='_blank' action='https://docs.google.com/forms/u/0/d/e/1FAIpQLSearVe5J1MuUlRiciuKxCPESmx38nOCApXW4V9FELTJwr_lqQ/formResponse' method='post'
+            style={{ padding: '48px 96px', boxShadow: '0px 1px 3px rgba(0,0,0,0.25)' }}>
             {
                 formInfo.map(item => (
                     item.inputLable === '詢問類別*' ? (
@@ -149,7 +148,7 @@ const ContactForm = ({ classes }) => {
                 ))
             }
             <Button type='submit' className={classes.submitBtn}><Typography variant='button'>確認送出</Typography></Button>
-        </Box>
+        </form>
     )
 }
 

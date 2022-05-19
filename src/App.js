@@ -10,6 +10,7 @@ import WorkPage from './views/WorkPage';
 import FaqPage from './views/FaqPage';
 import WorkImagePage from './views/WorkImagePage';
 import ContactUsPage from './views/ContactUsPage';
+import ServicePage from './views/ServicePage';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
             <Routes>
               <Route path='/' element={<HomePage />} />
               <Route path='/about' element={<AboutPage />} />
+              <Route path='/service' element={<ServicePage />} />
               <Route path='/work' element={<WorkPage />} />
               <Route path='/work/small-sized-air-condition' element={<WorkImagePage />} />
               <Route path='/work/big-sized-air-condition' element={<WorkImagePage />} />

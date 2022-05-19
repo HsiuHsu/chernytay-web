@@ -103,20 +103,6 @@ function AboutPage() {
                     </Grid>
                 </div>
             </ContainerStyles>
-            {/* <Card square elevation={0} sx={{ display: 'flex', height: 650 }} >
-                <CardMedia component='img' sx={{ width: '50%', height: 650, filter: 'brightness(0.5)' }} image={require('../public/img/空調保養/熱泵保養.jpg')} alt='熱泵保養' />
-                <Stack direction='column' spacing={6} sx={{ justifyContent: 'center', marginLeft: 15 }}>
-                    {companyAbility.map((ability) => (
-                        <Box>
-                            <Typography variant='subtitle1' className={classes.abilityTitle} key={ability.title} >{ability.title}</Typography>
-                            {ability.items.map((item) => (
-                                <Typography variant='body1' sx={{ marginBottom: '6px', color: 'var(--neutral20)' }} key={item}>{item}</Typography>
-                            ))}
-                        </Box>
-                    ))}
-                </Stack>
-            </Card> */}
-            {/* <div style={{ backgroundImage: `url('../public/img/空調保養/熱泵保養.jpg')` }}> */}
             <div style={{ height: '650px' }}>
                 <div style={{ height: '274px', backgroundImage: `url(${abilityBackgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'left top', backgroundColor: 'rgba(255,255,255,0.5)', backgroundBlendMode: 'lighten' }}>
                     <ContainerStyles disableGutters sx={{ height: '650px' }}>

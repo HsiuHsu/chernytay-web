@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: 'center',
         background: 'rgba(255,255,255)',
         [theme.breakpoints.up("xs")]: {
-            height: 52
+            height: 56
         },
         [theme.breakpoints.up("sm")]: {
             height: 80

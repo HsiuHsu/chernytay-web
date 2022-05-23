@@ -2,7 +2,7 @@
 import { jsx, css, keyframes } from "@emotion/react";
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Grid, List, Skeleton, Stack, Typography } from '@mui/material'
+import { Box, Grid, List, Skeleton, Stack, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { useTheme } from "@mui/material/styles";
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
@@ -85,13 +85,18 @@ const customersInfo = [
 
 const useStyles = makeStyles(theme => ({
     workTitle: {
-        fontSize: 64,
         fontFamily: 'Open Sans',
         fontWeight: 'bold',
         color: 'rgba(255,255,255,0)',
         WebkitTextStroke: '1px var(--primary60)',
         opacity: 0.5,
-        marginBottom: 8
+        marginBottom: 8,
+        [theme.breakpoints.up("xs")]: {
+            fontSize: 45,
+        },
+        [theme.breakpoints.up("sm")]: {
+            fontSize: 64,
+        }
     },
     workSubtitle: {
         marginBottom: 36,
@@ -104,8 +109,17 @@ const useStyles = makeStyles(theme => ({
     },
     customerListGroup: {
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        gridColumnGap: '24px'
+        [theme.breakpoints.up('sx')]: {
+            gridTemplateColumns: 'repeat(1, 1fr)',
+        },
+        [theme.breakpoints.up('sm')]: {
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gridColumnGap: '16px'
+        },
+        [theme.breakpoints.up('md')]: {
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridColumnGap: '24px'
+        }
     }
 }))
 
@@ -150,7 +164,7 @@ function WorkPage() {
 
     return (
         <>
-            <div style={{ paddingTop: 56, paddingBottom: 152, backgroundImage: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }}
+            <Box sx={{ paddingTop: 7, paddingBottom: 19, backgroundImage: { xs: 'linear-gradient(180deg, white 20%, rgba(45, 107, 40, 0.3) 0%)', sm: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' } }}
                 css={css`animation: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
             >
                 <ContainerStyles disableGutters>
@@ -159,7 +173,7 @@ function WorkPage() {
                     <Grid container spacing={2} >
                         {
                             workGalleryInfo.map(item => (
-                                <Grid item xs={12} sm={6} md={4} xl={4} key={item.imgName}>
+                                <Grid item xs={12} sm={6} xl={4} key={item.imgName}>
                                     <WorkImageCard
                                         imgUrl={item.imgUrl} imgName={item.imgName} imageIsLoading={imageIsLoading}
                                         galleryTitle={item.galleryTitle} gallerySubtitle={item.gallerySubtitle}
@@ -169,10 +183,12 @@ function WorkPage() {
                         }
                     </Grid>
                 </ContainerStyles>
-            </div>
-            <div style={{ margin: '112px 0', background: 'var(--surface)' }}>
+            </Box>
+            <Box sx={{ margin: '112px 0', background: 'var(--surface)' }}>
                 <ContainerStyles disableGutters className={classes.customerGroup}>
-                    <Typography variant='h1' component='h2' sx={{ position: 'absolute', top: -40 }} className={classes.workTitle}>Customer</Typography>
+                    <Typography variant='h1' component='h2' sx={{
+                        position: 'absolute', top: { xs: -24, sm: -40 }
+                    }} className={classes.workTitle}>Customer</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>優質客戶</Typography>
                     <List className={classes.customerListGroup}>
                         {
@@ -180,7 +196,7 @@ function WorkPage() {
                         }
                     </List>
                 </ContainerStyles>
-            </div>
+            </Box>
         </>
     )
 }

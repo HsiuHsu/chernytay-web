@@ -38,21 +38,21 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'center',
         background: 'rgba(255,255,255)',
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             height: 56
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up('sm')]: {
             height: 80
         },
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up('md')]: {
             height: 100
         },
     },
     iconState: {
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             display: 'flex',
         },
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up('md')]: {
             display: 'none'
         },
     },
@@ -61,12 +61,12 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        [theme.breakpoints.up("xs")]: {
-            height: 52,
+        [theme.breakpoints.up('xs')]: {
+            height: 56,
             boxSizing: 'border-box',
             paddingRight: 16,
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up('sm')]: {
             height: 80,
             paddingRight: 32,
         },
@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     listItems: {
         display: 'flex',
         flexDirection: 'row',
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up('md')]: {
             padding: '12px 0',
             marginLeft: 36,
         },
@@ -84,41 +84,70 @@ const useStyles = makeStyles(theme => ({
         borderBottom: '1px solid #000',
         display: 'flex',
         flexDirection: 'column',
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             paddingTop: 24,
             paddingBottom: 24,
         },
     },
     drawer: {
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '60%' },
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up('sm')]: {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '40%' },
         },
     },
     linkFocus: {
         color: 'var(--primary60)',
         // position: 'relative',
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up('xs')]: {
+            display: 'block',
+            textAlign: 'center',
+            paddingTop: 24,
+            paddingBottom: 24
+        },
+        [theme.breakpoints.up('md')]: {
             '&::before': {
                 // transition: 'all ease-in 250ms',
                 width: '100%',
-            }
+            },
+            display: 'block',
+            textAlign: 'none',
+            paddingTop: 24,
+            paddingBottom: 24,
+            marginLeft: 24,
         },
     },
+    link: {
+        color: 'var(--neutral20)',
+        [theme.breakpoints.up('xs')]: {
+            display: 'block',
+            textAlign: 'center',
+            paddingTop: 24,
+            paddingBottom: 24
+        },
+        [theme.breakpoints.up('md')]: {
+            display: 'block',
+            textAlign: 'none',
+            paddingTop: 24,
+            paddingBottom: 24,
+            marginLeft: 24,
+        }
+    }
 }))
 const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
-            <ListItem component='a' key={menu.name} onClick={() => handleMenuItemClick(menu.path)}>
-                <NavListItemTypo variant='subtitle1' component='h6' className={currentPath.includes(menu.path) && classes.linkFocus}>{menu.title}</NavListItemTypo>
-            </ListItem>
+            // <ListItem component='a' className={classes.} key={menu.name} onClick={() => handleMenuItemClick(menu.path)}>
+            //     <NavListItemTypo variant='subtitle1' component='h6' className={currentPath.includes(menu.path) && classes.linkFocus}>{menu.title}</NavListItemTypo>
+            // </ListItem>
+            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} className={currentPath.includes(menu.path) ? classes.linkFocus : classes.link} onClick={() => handleMenuItemClick(menu.path)}>{menu.title}</NavListItemTypo>
+
         ))}
     </List>
 )
 const MenuIcons = ({ classes, menuIcon, handleMenuIcon }) => (
-    <IconButton aria-label="open drawer" edge="start" onClick={handleMenuIcon} className={classes.iconState}>
+    <IconButton aria-label='open drawer' edge='start' onClick={handleMenuIcon} className={classes.iconState}>
         {menuIcon ? <CloseRounded style={{ fontSize: 24 }} /> : <MenuRounded style={{ fontSize: 24 }} />}
     </IconButton>
 )
@@ -127,7 +156,6 @@ function Nav() {
     const classes = useStyles()
     // top
     const handleOnTop = () => document.documentElement.scrollTo(0, 0)
-    // const goToTop = () => { topRef.current.scrollTop = 0 }
     //重整頁面回到頂部
     window.onbeforeunload = function () {
         document.documentElement.scrollTop = 0;  //ie
@@ -135,7 +163,7 @@ function Nav() {
     }
     // 獲得當前路徑
     let currentPath = useLocation().pathname
-    // 更換頁面
+    // 切換頁面
     let navigate = useNavigate()
     const handleMenuItemClick = (getPath) => {
         if (document.documentElement.clientWidth <= 904) {
@@ -143,19 +171,24 @@ function Nav() {
         }
         navigate(getPath)
         handleOnTop()
-        // goToTop()
     }
     // 側邊bar按鈕
     const [menuIcon, setMenuIcon] = useState(false)
     const handleMenuIcon = () => setMenuIcon && setMenuIcon(pre => !pre)
-    //window width < 904 側邊出現
+    //window width < 905 側邊出現, width < 600 公司名稱隱藏
     const [getBar, setGetBar] = useState(false)
+    const [companyName, setCompanyName] = useState(true)
     const showBtn = () => {
-        if (document.documentElement.clientWidth <= 904) {
+        if (document.documentElement.clientWidth < 905) {
             setGetBar(true)
         } else {
             setGetBar(false)
             setMenuIcon(false)
+        }
+        if (document.documentElement.clientWidth < 600) {
+            setCompanyName(false)
+        } else {
+            setCompanyName(true)
         }
     }
     useEffect(() => {
@@ -171,14 +204,18 @@ function Nav() {
             <ContainerStyles disableGutters className={classes.container}>
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
-                        <Avatar variant="rounded" sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}><img src={companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} /></Avatar>
-                        <Typography variant="h5" sx={{ color: 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
+                        <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}><img src={companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} /></Avatar>
+                        {
+                            companyName && <Typography variant='h5' component='h2' sx={{ color: 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
+                        }
                     </Box>
+                    {/*width > 905 */}
                     {getBar === false &&
                         <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} />
                     }
+                    {/*width < 905 選單 */}
                     <MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} />
-                    <Drawer anchor='right' variant="temporary" open={menuIcon} ModalProps={{ keepMounted: true }} className={classes.drawer}>
+                    <Drawer anchor='right' variant='temporary' open={menuIcon} ModalProps={{ keepMounted: true }} className={classes.drawer}>
                         <Box className={classes.listIcon}><MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} /></Box>
                         <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} />
                     </Drawer>

@@ -1,4 +1,3 @@
-import { NoEncryption } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 export const theme = createTheme({
@@ -18,7 +17,6 @@ export const theme = createTheme({
             'Roboto',
             'Open Sans',
         ].join(','),
-        // fontSize: 16,
         htmlFontSize: 16,
         h5: {
             fontSize: '1.375rem'

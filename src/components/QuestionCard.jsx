@@ -5,7 +5,7 @@ export default function QuestionCard({ getExpand, getDefaultExpand, getExpandIco
     return (
         <Accordion disableGutters id={faqId} expanded={getExpand} defaultExpanded={getDefaultExpand} square elevation={0} sx={{ border: '1px solid var(--surface-variant)' }}>
             <AccordionSummary expandIcon={getExpandIcon} sx={{ padding: 0, marginX: '16px', borderBottom: '1px solid var(--neutral60)' }}>
-                <Typography variant='subtitle1' className={classes.title}>{faqTitle}</Typography>
+                <Typography variant='subtitle1' className={classes.questionTitle}>{faqTitle}</Typography>
             </AccordionSummary>
             <AccordionDetails>
                 {faqItems}

@@ -1,6 +1,7 @@
 import { styled, alpha } from '@mui/system'
-import { ListItem, Container, Typography, TextField } from '@mui/material'
+import { Container, Typography, TextField } from '@mui/material'
 
+// nav 按鈕
 export const NavListItemTypo = styled(Typography)(({ theme }) => ({
     color: 'var(--neutral20)',
     position: 'relative',
@@ -13,7 +14,7 @@ export const NavListItemTypo = styled(Typography)(({ theme }) => ({
             display: 'block',
             height: 2,
             background: 'var(--primary60)',
-            bottom: -12,
+            bottom: 12,
             width: 0
         },
         '&:hover::before': {
@@ -23,6 +24,7 @@ export const NavListItemTypo = styled(Typography)(({ theme }) => ({
     },
 }))
 
+// 響應式設定
 export const ContainerStyles = styled(Container)(({ theme }) => ({
     [theme.breakpoints.up("xs")]: {
         width: 'auto',
@@ -49,6 +51,7 @@ export const ContainerStyles = styled(Container)(({ theme }) => ({
     },
 }))
 
+// 表單input
 export const CustomerTextField = styled(TextField)(({ theme }) => ({
     '& .MuiInputBase-input': {
         color: 'var(--neutral20)',
@@ -57,6 +60,7 @@ export const CustomerTextField = styled(TextField)(({ theme }) => ({
         border: 0,
         backgroundColor: 'var(--neutral99)',
         padding: '12px 16px',
+        margin: 0,
         transition: theme.transitions.create([
             'border-color',
             'background-color',

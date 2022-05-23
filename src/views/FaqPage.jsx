@@ -12,6 +12,24 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '72px',
         paddingBottom: '144px',
     },
+    faqTitle: {
+        marginBottom: 8,
+        color: 'rgba(255,255,255,0)',
+        WebkitTextStroke: '1px var(--primary60)',
+        fontFamily: 'Open Sans',
+        fontWeight: 'bold',
+        opacity: 0.5,
+        [theme.breakpoints.up("xs")]: {
+            fontSize: 45,
+        },
+        [theme.breakpoints.up("sm")]: {
+            fontSize: 64,
+        },
+    },
+    faqSubtitle: {
+        marginBottom: 48,
+        color: 'var(--neutral60)'
+    },
     scrollBtn: {
         marginRight: '6px',
         marginBottom: '16px',
@@ -24,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
         },
         scrollBehavior: 'smooth'
     },
-    title: {
+    questionTitle: {
         color: 'var(--on-surface-variant)',
     }
 }))
@@ -44,6 +62,8 @@ function FaqPage() {
     return (
         <Grid className={classes.faqContainer}>
             <ContainerStyles disableGutters >
+                <Typography variant='h1' component='h2' className={classes.faqTitle}>Question</Typography>
+                <Typography variant='subtitle1' className={classes.faqSubtitle}>常見問題</Typography>
                 <Stack direction='row' justifyContent='flex-start' flexWrap='wrap'>
                     {
                         faqItems.map((faqItem) => (<Button variant='outlined' href={faqItem.url} key={faqItem.title} className={classes.scrollBtn} onClick={handleClick}>{faqItem.title}</Button>))

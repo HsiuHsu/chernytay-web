@@ -166,6 +166,7 @@ function Nav() {
     // 切換頁面
     let navigate = useNavigate()
     const handleMenuItemClick = (getPath) => {
+        // width<905 關閉選單
         if (document.documentElement.clientWidth <= 904) {
             setMenuIcon(false)
         }

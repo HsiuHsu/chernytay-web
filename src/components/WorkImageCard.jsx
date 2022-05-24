@@ -12,23 +12,14 @@ function WorkImageCard({ imageIsLoading, handleImgClick, imgUrl, imgName, galler
                     ) : (
                         <CardMedia component='img' height='250'
                             image={require('../public/img/' + imgUrl + '/' + imgName + '.jpg')}
-                            // image={image}
-                            alt={imgName} />
+                            alt={imgName}
+                        />
                     )
                 }
-                {/* <CardMedia component='img' height='250'
-                    // image={require('../public/img/' + imgUrl + '/' + imgName + '.jpg')} 
-                    image={image}
-                    alt={imgName} />
-                <CardContent>
-                    <Typography gutterBottom variant='h6' sx={{ color: 'var(--primary40)' }} >{galleryTitle}</Typography>
-                    <Typography gutterBottom variant='body1' sx={{ color: 'var(--neutral40)' }}>{gallerySubtitle}</Typography>
-                </CardContent> */}
-                <CardContent>
+                <CardContent id={imgName}>
                     <Typography gutterBottom variant='h6' component='div' sx={{ color: 'var(--primary40)' }} >{imageIsLoading ? <Skeleton /> : galleryTitle}</Typography>
                     <Typography gutterBottom variant='body1' component='div' sx={{ color: 'var(--neutral40)' }}>{imageIsLoading ? <Skeleton /> : gallerySubtitle}</Typography>
                 </CardContent>
-
             </CardActionArea>
         </Card >
     )

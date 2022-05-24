@@ -144,6 +144,7 @@ function WorkPage() {
     // 相簿路徑
     let navigate = useNavigate()
     const handleImgClick = (e) => {
+        console.log(e);
         const getName = e.target.alt
         if (getName === '分離式冷氣室外機')
             navigate('/work/small-sized-air-condition')

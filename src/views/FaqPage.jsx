@@ -1,9 +1,9 @@
 import React from 'react'
 import QuestionCard from '../components/QuestionCard'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
-import { faqItems } from '../components/FaqItems'
 import { Button, Grid, Stack, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import { FaqItem1, FaqItem2, FaqItem3, FaqItem4, FaqItem5, FaqItem6, FaqItem7, FaqItem8, FaqItem9 } from '../components/FaqItems'
 
 const useStyles = makeStyles((theme) => ({
     faqContainer: {
@@ -44,11 +44,82 @@ const useStyles = makeStyles((theme) => ({
     },
     questionTitle: {
         color: 'var(--on-surface-variant)',
-    }
+    },
+    // faq items
+    mb6: { marginBottom: 6 },
+    txt: { color: 'var(--on-surface-variant)' },
+    listGroup: {
+        listStyle: 'decimal',
+        listStylePosition: 'inside',
+        marginBottom: 6,
+        '& li': {
+            marginBottom: 6,
+        },
+        '& li:nth-last-child(1)': {
+            marginBottom: 0
+        },
+    },
 }))
 
 function FaqPage() {
     const classes = useStyles()
+    const faqItems = [
+        {
+            title: '冷氣應多久保養一次？',
+            item: <FaqItem1 classes={classes} />,
+            url: '#faqItem1',
+            id: 'faqItem1'
+        },
+        {
+            title: '冷氣使用小秘訣',
+            item: <FaqItem2 classes={classes} />,
+            url: '#faqItem2',
+            id: 'faqItem2'
+        },
+        {
+            title: '關於冷氣，不可不知的事',
+            item: <FaqItem3 classes={classes} />,
+            url: '#faqItem3',
+            id: 'faqItem3'
+        },
+        {
+            title: '精打細算，省電不麻煩',
+            item: <FaqItem4 classes={classes} />,
+            url: '#faqItem4',
+            id: 'faqItem4'
+        },
+        {
+            title: '變頻式冷氣機的優點',
+            item: <FaqItem5 classes={classes} />,
+            url: '#faqItem5',
+            id: 'faqItem5'
+        },
+        {
+            title: '公式換算',
+            item: <FaqItem6 classes={classes} />,
+            url: '#faqItem6',
+            id: 'faqItem6'
+        },
+        {
+            title: '冷氣耗電如何換算？',
+            item: <FaqItem7 classes={classes} />,
+            url: '#faqItem7',
+            id: 'faqItem7'
+        },
+        {
+            title: '如何挑選冷氣？',
+            item: <FaqItem8 classes={classes} />,
+            url: '#faqItem8',
+            id: 'faqItem8'
+        },
+        {
+            title: '冷氣省電絕招',
+            item: <FaqItem9 classes={classes} />,
+            url: '#faqItem9',
+            id: 'faqItem9'
+        },
+
+    ]
     const handleClick = (e) => {
         e.preventDefault()
         const target = e.target.getAttribute('href')

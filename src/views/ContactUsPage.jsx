@@ -233,9 +233,9 @@ const Contact = ({ classes, theme }) => (
             </Stack>
             <Grid item sm={12} md={10} xl={8} className={classes.contactPhone}>
                 <Stack direction={{ xs: 'column', sm: 'row' }} alignItems={{ xs: 'center', sm: 'flex-end' }} sx={{ marginBottom: '12px' }}>
-                    <Typography variant='h5' component='p' sx={{ color: 'var(--white)', [theme.breakpoints.up('xs')]: { marginBottom: '6px' }, [theme.breakpoints.up('sm')]: { marginBottom: 0 } }}>tel</Typography>
-                    <Typography variant='h4' component='p' sx={{ color: 'var(--white)', [theme.breakpoints.up('xs')]: { marginLeft: 0, marginBottom: '6px' }, [theme.breakpoints.up('sm')]: { marginLeft: 4 } }}>05-285-6505</Typography>
-                    <Typography variant='h4' component='p' sx={{ color: 'var(--white)', [theme.breakpoints.up('xs')]: { marginLeft: 0 }, [theme.breakpoints.up('sm')]: { marginLeft: 4 } }}>09-68-898-721</Typography>
+                    <Typography variant='h5' component='p' sx={{ color: 'var(--white)', marginBottom: { xs: '6px', sm: 0 } }}>tel</Typography>
+                    <Typography variant='h4' component='p' sx={{ color: 'var(--white)', marginLeft: { xs: 0, sm: 4 }, marginBottom: { xs: '6px', sm: 0 } }}>05-285-6505</Typography>
+                    <Typography variant='h4' component='p' sx={{ color: 'var(--white)', marginLeft: { xs: 0, sm: 4 }, }}>09-68-898-721</Typography>
                 </Stack>
                 <Typography variant='body2' sx={{ color: 'var(--white)', textAlign: 'center' }}>【電話受理時間】周一至周五 早上8:00-12:00; 下午13:30-17:30(國定假日不受理)</Typography>
             </Grid>
@@ -255,34 +255,34 @@ const Contact = ({ classes, theme }) => (
 const ContactForm = ({ classes, theme }) => {
     const formInfo = [
         {
-            inputLable: '姓名*',
+            inputLabel: '姓名*',
             id: 'input-name',
             type: 'text',
             name: 'entry.573583167',
             placeholder: '請填寫全名',
         },
         {
-            inputLable: '電話*',
+            inputLabel: '電話*',
             id: 'input-phone',
             type: 'tel',
             name: 'entry.1404911985',
             placeholder: '例 : 09-12-345-678',
         },
         {
-            inputLable: '信箱*',
+            inputLabel: '信箱*',
             id: 'input-email',
             type: 'email',
             name: 'entry.1487827096',
             placeholder: '例 : example@gmail.com',
         },
         {
-            inputLable: '詢問類別*',
+            inputLabel: '詢問類別*',
             value: ['設計規劃', '工程施工', '維修服務', '保養服務', '節能改善', '其他'],
             type: 'checkbox',
             name: 'entry.1787171687',
         },
         {
-            inputLable: '詢問內容*',
+            inputLabel: '詢問內容*',
             id: 'text-area',
             multiline: true,
             minRows: 5,
@@ -295,9 +295,9 @@ const ContactForm = ({ classes, theme }) => {
             <Box className={classes.formGroup}>
                 {
                     formInfo.map(item => (
-                        item.inputLable === '詢問類別*' ? (
-                            <Stack direction='row' className={classes.inputGroup} key={item.inputLable}>
-                                <InputLabel className={classes.textAreaTitle}>{item.inputLable}</InputLabel>
+                        item.inputLabel === '詢問類別*' ? (
+                            <Stack direction='row' className={classes.inputGroup} key={item.inputLabel}>
+                                <InputLabel className={classes.textAreaTitle}>{item.inputLabel}</InputLabel>
                                 <Stack className={classes.checkboxGroup}>
                                     {
                                         item.value.map(getId => (
@@ -310,9 +310,9 @@ const ContactForm = ({ classes, theme }) => {
                                 </Stack>
                             </Stack>
                         ) : (
-                            <Stack direction='row' className={classes.inputGroup} key={item.inputLable}>
-                                <InputLabel className={item.id === 'text-area' ? classes.textAreaTitle : classes.inputTitle} htmlFor={item.id}>{item.inputLable}</InputLabel>
-                                <CustomerTextField type={item.type} name={item.name} placeholder={item.placeholder} id={item.id} required sx={{ [theme.breakpoints.up('xs')]: { width: '100%' }, [theme.breakpoints.up('sm')]: { width: '75%' } }}
+                            <Stack direction='row' className={classes.inputGroup} key={item.inputLabel}>
+                                <InputLabel className={item.id === 'text-area' ? classes.textAreaTitle : classes.inputTitle} htmlFor={item.id}>{item.inputLabel}</InputLabel>
+                                <CustomerTextField type={item.type} name={item.name} placeholder={item.placeholder} id={item.id} required sx={{ width: { xs: '100%', sm: '75%' } }}
                                     className={item.id === 'text-area' && classes.textArea}
                                     multiline={item.multiline && true} minRows={item.multiline && item.minRows} />
                             </Stack>
@@ -328,7 +328,6 @@ const ContactForm = ({ classes, theme }) => {
 function ContactUsPage() {
     const classes = useStyles()
     const theme = useTheme()
-
     return (
         <ContainerStyles disableGutters>
             <Information classes={classes} theme={theme} />

@@ -14,25 +14,29 @@ const workGalleryInfo = [
         imgName: '分離式冷氣室外機',
         galleryTitle: '小型空調',
         gallerySubtitle: '依照客戶的需求及空間大小，規劃空調的擺放位置與噸數。',
-        img: '/assets/image/分離式冷氣室外機.jpg'
+        img: '/assets/image/分離式冷氣室外機.jpg',
+        path: '/work/small-sized-air-condition'
     },
     {
         imgUrl: '大型空調',
         imgName: '多聯式室外機',
         galleryTitle: '大型空調',
-        gallerySubtitle: '配合客戶的需求及空間裝修的施工工程，提供客戶高品質的安裝服務。'
+        gallerySubtitle: '配合客戶的需求及空間裝修的施工工程，提供客戶高品質的安裝服務。',
+        path: '/work/big-sized-air-condition'
     },
     {
         imgUrl: '空調維修',
         imgName: '乾燥過濾器更換後',
         galleryTitle: '空調維修',
-        gallerySubtitle: '配依照現場評估空調的情況後，提供客戶最專業的維修品質。'
+        gallerySubtitle: '配依照現場評估空調的情況後，提供客戶最專業的維修品質。',
+        path: '/work/air-condition-repair'
     },
     {
         imgUrl: '空調保養',
         imgName: '熱泵保養',
         galleryTitle: '空調保養',
-        gallerySubtitle: '定期維護與保養，檢查空調與零件，使冷氣用得安心、吹得舒適健康。'
+        gallerySubtitle: '定期維護與保養，檢查空調與零件，使冷氣用得安心、吹得舒適健康。',
+        path: '/work/air-condition-maintain'
     }
 ]
 const customersInfo = [
@@ -143,18 +147,6 @@ function WorkPage() {
     };
     // 相簿路徑
     let navigate = useNavigate()
-    const handleImgClick = (e) => {
-        console.log(e);
-        const getName = e.target.alt
-        if (getName === '分離式冷氣室外機')
-            navigate('/work/small-sized-air-condition')
-        if (getName === '多聯式室外機')
-            navigate('/work/big-sized-air-condition')
-        if (getName === '乾燥過濾器更換後')
-            navigate('/work/air-condition-repair')
-        if (getName === '熱泵保養')
-            navigate('/work/air-condition-maintain')
-    }
     // 圖片加載
     useEffect(() => {
         const image = new Image();
@@ -165,7 +157,10 @@ function WorkPage() {
 
     return (
         <>
-            <Box sx={{ paddingTop: 7, paddingBottom: 19, backgroundImage: { xs: 'linear-gradient(180deg, white 20%, rgba(45, 107, 40, 0.3) 0%)', sm: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' } }}
+            <Box sx={{
+                paddingTop: 7, paddingBottom: 19,
+                backgroundImage: { xs: 'linear-gradient(180deg, white 20%, rgba(45, 107, 40, 0.3) 0%)', sm: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }
+            }}
                 css={css`animation: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
             >
                 <ContainerStyles disableGutters>
@@ -174,11 +169,11 @@ function WorkPage() {
                     <Grid container spacing={2} >
                         {
                             workGalleryInfo.map(item => (
-                                <Grid item xs={12} sm={6} xl={4} key={item.imgName}>
+                                <Grid item xs={12} sm={6} xl={4} key={item.imgName} onClick={() => navigate(item.path)}>
                                     <WorkImageCard
                                         imgUrl={item.imgUrl} imgName={item.imgName} imageIsLoading={imageIsLoading}
                                         galleryTitle={item.galleryTitle} gallerySubtitle={item.gallerySubtitle}
-                                        handleImgClick={(e) => handleImgClick(e)}
+                                        path={item.path}
                                     />
                                 </Grid>))
                         }

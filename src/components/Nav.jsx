@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     appBar: {
         display: 'flex',
         justifyContent: 'center',
-        background: 'rgba(255,255,255)',
+        // background: 'rgba(255,255,255)',
         [theme.breakpoints.up('xs')]: {
             height: 56
         },
@@ -119,7 +119,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     link: {
-        color: 'var(--neutral20)',
+        // color: 'var(--neutral20)',
         [theme.breakpoints.up('xs')]: {
             display: 'block',
             textAlign: 'center',
@@ -138,11 +138,8 @@ const useStyles = makeStyles(theme => ({
 const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
-            // <ListItem component='a' className={classes.} key={menu.name} onClick={() => handleMenuItemClick(menu.path)}>
-            //     <NavListItemTypo variant='subtitle1' component='h6' className={currentPath.includes(menu.path) && classes.linkFocus}>{menu.title}</NavListItemTypo>
-            // </ListItem>
-            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} className={currentPath.includes(menu.path) ? classes.linkFocus : classes.link} onClick={() => handleMenuItemClick(menu.path)}>{menu.title}</NavListItemTypo>
-
+            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} sx={{ color: currentPath === '/' ? 'var(--white)' : 'var(--neutral20)' }}
+                className={currentPath.includes(menu.path) ? classes.linkFocus : classes.link} onClick={() => handleMenuItemClick(menu.path)}>{menu.title}</NavListItemTypo>
         ))}
     </List>
 )
@@ -201,13 +198,13 @@ function Nav() {
     }, [])
 
     return (
-        <AppBar className={classes.appBar} elevation={1}>
+        <AppBar className={classes.appBar} elevation={currentPath === '/' ? 0 : 1} sx={{ background: currentPath === '/' ? 'rgba(255,255,255,0)' : 'rgba(255,255,255)' }}>
             <ContainerStyles disableGutters className={classes.container}>
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
                         <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}><img src={companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} /></Avatar>
                         {
-                            companyName && <Typography variant='h5' component='h2' sx={{ color: 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
+                            companyName && <Typography variant='h5' component='h2' sx={{ color: currentPath === '/' ? 'var(--white)' : 'var(--neutral20)' }}>成泰冷凍空調有限公司</Typography>
                         }
                     </Box>
                     {/*width > 905 */}

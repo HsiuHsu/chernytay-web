@@ -138,7 +138,7 @@ const useStyles = makeStyles(theme => ({
 const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
-            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} sx={{ color: currentPath === '/' ? 'var(--white)' : 'var(--neutral20)' }}
+            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} sx={{ color: { md: currentPath === '/' ? 'var(--white)' : 'var(--neutral20)' } }}
                 className={currentPath.includes(menu.path) ? classes.linkFocus : classes.link} onClick={() => handleMenuItemClick(menu.path)}>{menu.title}</NavListItemTypo>
         ))}
     </List>

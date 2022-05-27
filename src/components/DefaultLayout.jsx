@@ -11,6 +11,7 @@ function DefaultLayout({ children }) {
             <CssBaseline />
             <Grid item><Nav /></Grid>
             <Grid item sx={{
+                overflow: 'hidden',
                 marginTop: currentPath === '/' ? { xs: 0 } : {
                     xs: 7,
                     sm: 10,

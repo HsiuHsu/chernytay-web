@@ -33,7 +33,8 @@ const ImgItem = ({ imgUrl, imgName, name }) => {
                         '&:hover': { backgroundColor: 'var(--neutral40)', }
                     }}
                         onClick={() => setImgView(false)}>
-                        <CloseRounded sx={{ color: 'var(--white)', fontSize: { xs: 14, md: 24 } }} /></IconButton>
+                        <CloseRounded sx={{ color: 'var(--white)', fontSize: { xs: 14, md: 24 } }} />
+                    </IconButton>
                     <div style={{
                         display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '56px 0',
                         height: '80vh'

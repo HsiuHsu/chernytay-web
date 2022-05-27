@@ -161,7 +161,7 @@ function WorkPage() {
                 paddingTop: 7, paddingBottom: 19,
                 backgroundImage: { xs: 'linear-gradient(180deg, white 20%, rgba(45, 107, 40, 0.3) 0%)', sm: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }
             }}
-                css={css`animation: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
+                css={css`: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
             >
                 <ContainerStyles disableGutters>
                     <Typography variant='h1' component='h2' className={classes.workTitle}>Work</Typography>

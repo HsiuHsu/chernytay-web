@@ -147,7 +147,12 @@ function AboutPage() {
     const theme = useTheme()
     return (
         <>
-            <ContainerStyles disableGutters css={css`animation: ${anim} 1000ms ${theme.transitions.easing.easeInOut};`} sx={{ display: 'flex' }}>
+            <ContainerStyles disableGutters
+                // css={css`animation: ${anim} 1000ms ${theme.transitions.easing.easeInOut};`} 
+                sx={{
+                    display: 'flex',
+                    animation: `${anim} 1000ms ${theme.transitions.easing.easeInOut}`
+                }}>
                 <div style={{ marginTop: '96px', marginBottom: '240px', display: 'flex', alignItems: 'center' }}>
                     <Grid container className={classes.aboutContainer} spacing={3}>
                         <Typography variant='h1' component='h2' className={classes.aboutTitle}>About Us</Typography>
@@ -157,7 +162,7 @@ function AboutPage() {
                                 <Typography variant='body1' component='p' className={classes.aboutTxt}>成泰空調二十年來努力研發空調與熱能共生之複合式技術，此乃創新獨特之先趨，8年前引領變頻節能之創舉，積極研發冷熱共生熱泵，空調工程，『空調系統』同時擁有『變頻』及『監控 』之運用，正所謂一本三效運用擴大，為營運機構降低營運成本及節能減碳之效益。 </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} className={classes.aboutImg} css={css`animation: ${anim} 2000ms ${theme.transitions.easing.easeInOut};`}>
+                        <Grid item xs={12} sm={6} md={4} className={classes.aboutImg} sx={{ animation: `${anim} 2000ms ${theme.transitions.easing.easeInOut}` }}>
                             <Avatar src={require('../public/img/小型空調/分離式冷氣室外機 (3).jpg')} variant="square" sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
                         </Grid>
                     </Grid>

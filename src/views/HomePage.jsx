@@ -8,7 +8,7 @@ import { makeStyles, useTheme } from '@mui/styles'
 import { faqItems } from '../components/FaqItems'
 import QuestionCard from '../components/QuestionCard'
 import SliderCarousel from '../components/SliderCarousel'
-import useWidthRwd from '../utils/useWidthRwd'
+import useWidthRwd from '../hooks/useWidthRwd'
 import workImg1 from '../public/img/小型空調/分離式冷氣銅配管.jpg'
 import workImg2 from '../public/img/小型空調/雙風扇分離式冷氣室外機.jpg'
 import workImg3 from '../public/img/大型空調/室內送風機.jpg'
@@ -227,7 +227,6 @@ const WorkImg = () => {
 }
 // faq
 const FaqInfo = ({ classes }) => {
-
     return (
         <Box sx={{ display: 'flex', paddingTop: 25, paddingBottom: 25 }}>
             <Box sx={{

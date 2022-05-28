@@ -7,7 +7,15 @@ export const NavListItemTypo = styled(Typography)(({ theme }) => ({
     position: 'relative',
     cursor: 'pointer',
     '&:hover': { color: 'var(--primary60)' },
+    [theme.breakpoints.up('xs')]: {
+        display: 'block',
+        textAlign: 'center',
+        paddingTop: 24,
+        paddingBottom: 24
+    },
     [theme.breakpoints.up("md")]: {
+        textAlign: 'none',
+        marginLeft: 24,
         '&::before': {
             position: 'absolute',
             content: '""',

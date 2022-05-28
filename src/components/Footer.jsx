@@ -52,7 +52,7 @@ function Footer() {
     let navigate = useNavigate()
     const classes = useStyles()
     return (
-        <Box style={{ width: '100%', background: 'var(--primary40)', color: 'var(--white)', padding: '56px 0' }}>
+        <Box sx={{ width: '100%', background: 'var(--primary40)', color: 'var(--white)', padding: '56px 0' }}>
             < ContainerStyles disableGutters >
                 <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Grid item xs={12} md={6} xl={4} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>

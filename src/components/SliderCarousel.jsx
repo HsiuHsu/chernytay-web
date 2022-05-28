@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Box, IconButton, Stack } from '@mui/material'
 import { ArrowBackIosRounded, ArrowForwardIosRounded } from '@mui/icons-material'
 import slierImg1 from '../public/img/小型空調/吊隱冷氣線型出風口.jpg'
@@ -13,7 +13,7 @@ const ArrowBtn = ({ direction, handleArrowClick }) => (
             top: '50%',
             right: `${direction === 'right' && '24px'}`,
             left: `${direction === 'left' && '24px'}`,
-            background: 'rgba(255,255,255,0.3)',
+            // background: 'rgba(255,255,255,0.3)',
             opacity: 0.5,
             borderRadius: '50%',
             display: 'flex',
@@ -37,21 +37,14 @@ const ArrowBtn = ({ direction, handleArrowClick }) => (
     </IconButton>
 )
 const SlideImg = ({ windowWidth, img }) => {
-    const theme = useTheme()
     return (
         <Box sx={{
-            height: 500,
+            height: { xs: 500, lg: '100vh' },
             width: windowWidth,
             backgroundImage: `url(${img})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            [theme.breakpoints.up('xs')]: {
-                height: 500
-            },
-            [theme.breakpoints.up('lg')]: {
-                height: '100vh'
-            }
+            backgroundPosition: 'center'
         }} />
     )
 }
@@ -118,15 +111,15 @@ function SliderCarousel({ sliderWidth }) {
             display: 'flex', position: 'relative', height: { xs: 500, lg: '100vh' }, maxWidth: sliderWidth, width: '100 % ', margin: '0 auto', overflow: 'hidden'
         }}>
             <Box sx={{
-                transform: `TranslateX(-${translate}px)`,
+                transform: `translateX(-${translate}px)`,
                 transition: 'transform ease-out 0.45s',
                 display: 'flex', height: { xs: 500, lg: '100vh' }, width: sliderWidth * content.length
             }
             } >
                 {content.map((img, index) => (<SlideImg windowWidth={sliderWidth} img={img} key={index} />))}
             </ Box>
-            {/* <ArrowBtn direction='left' handleArrowClick={preSlide} /> */}
-            {/* <ArrowBtn direction='right' handleArrowClick={nextSlide} /> */}
+            <ArrowBtn direction='left' handleArrowClick={preSlide} />
+            <ArrowBtn direction='right' handleArrowClick={nextSlide} />
             <SlideDot content={content} activeIndex={activeIndex} slider={slider} setSlider={setSlider} windowWidth={sliderWidth} />
         </Box>
     )

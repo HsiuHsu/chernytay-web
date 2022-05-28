@@ -99,70 +99,42 @@ const useStyles = makeStyles(theme => ({
     },
     linkFocus: {
         color: 'var(--primary60)',
-        // position: 'relative',
-        [theme.breakpoints.up('xs')]: {
-            display: 'block',
-            textAlign: 'center',
-            paddingTop: 24,
-            paddingBottom: 24
-        },
         [theme.breakpoints.up('md')]: {
             '&::before': {
-                // transition: 'all ease-in 250ms',
                 width: '100%',
             },
-            display: 'block',
-            textAlign: 'none',
-            paddingTop: 24,
-            paddingBottom: 24,
-            marginLeft: 24,
         },
     },
-    link: {
-        // color: 'var(--neutral20)',
-        [theme.breakpoints.up('xs')]: {
-            display: 'block',
-            textAlign: 'center',
-            paddingTop: 24,
-            paddingBottom: 24
-        },
-        [theme.breakpoints.up('md')]: {
-            display: 'block',
-            textAlign: 'none',
-            paddingTop: 24,
-            paddingBottom: 24,
-            marginLeft: 24,
-        }
-    }
+    // scroll
 }))
-const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath }) => (
+const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath, colorStyle }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
-            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} sx={{ color: { md: currentPath === '/' ? 'var(--white)' : 'var(--neutral20)' } }}
-                className={currentPath.includes(menu.path) ? classes.linkFocus : classes.link} onClick={() => handleMenuItemClick(menu.path)}>{menu.title}</NavListItemTypo>
+            <NavListItemTypo variant='subtitle1' component='a' key={menu.name}
+                sx={{ color: { md: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--neutral20)' } }}
+                className={currentPath.includes(menu.path) ? classes.linkFocus : ''} onClick={() => handleMenuItemClick(menu.path)}
+            >{menu.title}</NavListItemTypo>
         ))}
     </List>
 )
-const MenuIcons = ({ classes, menuIcon, handleMenuIcon }) => (
+const MenuIcons = ({ classes, menuIcon, handleMenuIcon, currentPath, colorStyle }) => (
     <IconButton aria-label='open drawer' edge='start' onClick={handleMenuIcon} className={classes.iconState}>
-        {menuIcon ? <CloseRounded style={{ fontSize: 24 }} /> : <MenuRounded style={{ fontSize: 24 }} />}
+        {menuIcon ? <CloseRounded sx={{ fontSize: 24, color: 'var(--neutral20)' }} /> : <MenuRounded sx={{ fontSize: 24, color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--neutral20)' }} />}
     </IconButton>
 )
 
 function Nav() {
     const classes = useStyles()
-    // top
-    const handleOnTop = () => document.documentElement.scrollTo(0, 0)
-    //重整頁面回到頂部
-    window.onbeforeunload = function () {
-        document.documentElement.scrollTop = 0;  //ie
-        document.body.scrollTop = 0;  //非ie
-    }
-    // 獲得當前路徑
-    let currentPath = useLocation().pathname
-    // 切換頁面
-    let navigate = useNavigate()
-    const handleMenuItemClick = (getPath) => {
+    let currentPath = useLocation().pathname  // 獲得當前路徑
+    let navigate = useNavigate()  // 切換頁面
+
+    const [menuIcon, setMenuIcon] = useState(false)    // 側邊bar按鈕
+    const [getBar, setGetBar] = useState(false)    //window width < 905 側邊出現
+    const [companyName, setCompanyName] = useState(true)  // width < 600 公司名稱隱藏
+    const [colorStyle, setColorStyle] = useState(true)  // scroll nav color
+
+    const handleOnTop = () => document.documentElement.scrollTo(0, 0) // to top
+    const handleMenuItemClick = (getPath) => {  // 點擊切換頁面
         // width<905 關閉選單
         if (document.documentElement.clientWidth <= 904) {
             setMenuIcon(false)
@@ -170,52 +142,71 @@ function Nav() {
         navigate(getPath)
         handleOnTop()
     }
-    // 側邊bar按鈕
-    const [menuIcon, setMenuIcon] = useState(false)
+    // 點擊側邊bar按鈕(menu open/close)
     const handleMenuIcon = () => setMenuIcon && setMenuIcon(pre => !pre)
-    //window width < 905 側邊出現, width < 600 公司名稱隱藏
-    const [getBar, setGetBar] = useState(false)
-    const [companyName, setCompanyName] = useState(true)
-    const showBtn = () => {
-        if (document.documentElement.clientWidth < 905) {
-            setGetBar(true)
-        } else {
-            setGetBar(false)
-            setMenuIcon(false)
-        }
-        if (document.documentElement.clientWidth < 600) {
-            setCompanyName(false)
-        } else {
-            setCompanyName(true)
-        }
+    //重整頁面回到頂部
+    window.onbeforeunload = function () {
+        document.documentElement.scrollTop = 0;  //ie
+        document.body.scrollTop = 0;  //非ie
     }
+    // 側邊bar(open/close), menu icon(open/close), width<600 企業名稱隱藏
     useEffect(() => {
+        const showBtn = () => {
+            if (document.documentElement.clientWidth < 905) {
+                setGetBar(true)
+            } else {
+                setGetBar(false)
+                setMenuIcon(false)
+            }
+            if (document.documentElement.clientWidth < 600) {
+                setCompanyName(false)
+            } else setCompanyName(true)
+        }
         showBtn()
         window.addEventListener('resize', showBtn)
         return () => {
             window.removeEventListener('resize', showBtn)
         }
     }, [])
+    // change home page color (scroll nav)
+    useEffect(() => {
+        const getCurrentScroll = () => { return window.scrollY || document.documentElement.scrollTop }
+        window.onscroll = () => {
+            // 大於1240 height=windows.height
+            const scroll = getCurrentScroll()
+            const windowHeight = document.documentElement.clientHeight
+            const windowWidth = document.documentElement.clientWidth
+            if (windowWidth > 1239) {
+                if (scroll > windowHeight * 0.9) {
+                    setColorStyle(false)
+                } else setColorStyle(true)
+            } else {
+                if (scroll > 400) {
+                    setColorStyle(false)
+                } else setColorStyle(true)
+            }
+        }
+    }, [])
 
     return (
-        <AppBar className={classes.appBar} elevation={currentPath === '/' ? 0 : 1} sx={{ background: currentPath === '/' ? 'rgba(255,255,255,0)' : 'rgba(255,255,255)' }}>
+        <AppBar className={classes.appBar} elevation={currentPath === '/' && colorStyle === true ? 0 : 1} sx={{ background: currentPath === '/' && colorStyle === true ? 'rgba(255,255,255,0)' : 'rgba(255,255,255)' }}>
             <ContainerStyles disableGutters className={classes.container}>
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
                         <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}><img src={companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} /></Avatar>
                         {
-                            companyName && <Typography variant='h5' component='h2' sx={{ color: currentPath === '/' ? 'var(--white)' : 'var(--neutral20)' }}>成泰冷凍空調有限公司</Typography>
+                            companyName && <Typography variant='h5' component='h2' sx={{ color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
                         }
                     </Box>
                     {/*width > 905 */}
                     {getBar === false &&
-                        <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} />
+                        <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} colorStyle={colorStyle} />
                     }
                     {/*width < 905 選單 */}
-                    <MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} />
+                    <MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} colorStyle={colorStyle} currentPath={currentPath} />
                     <Drawer anchor='right' variant='temporary' open={menuIcon} ModalProps={{ keepMounted: true }} className={classes.drawer}>
                         <Box className={classes.listIcon}><MenuIcons classes={classes} menuIcon={menuIcon} handleMenuIcon={handleMenuIcon} /></Box>
-                        <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} />
+                        <ListGroup getBar={getBar} classes={classes} handleMenuItemClick={handleMenuItemClick} currentPath={currentPath} colorStyle={colorStyle} />
                     </Drawer>
                 </Toolbar>
             </ContainerStyles>

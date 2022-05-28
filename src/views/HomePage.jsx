@@ -5,7 +5,7 @@ import { Box, Grid, Stack, Typography } from '@mui/material'
 import { ExpandMoreRounded } from '@mui/icons-material'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
 import { makeStyles, useTheme } from '@mui/styles'
-import { FaqItem1, FaqItem2, FaqItem8, FaqItem9 } from '../components/FaqItems'
+import { faqItems } from '../components/FaqItems'
 import QuestionCard from '../components/QuestionCard'
 import SliderCarousel from '../components/SliderCarousel'
 import useWidthRwd from '../utils/useWidthRwd'
@@ -17,7 +17,6 @@ import workImg5 from '../public/img/空調維修/水塔散熱材更換後.jpg'
 import workImg6 from '../public/img/空調維修/逆止閥更新後.jpg'
 import workImg7 from '../public/img/空調保養/水塔清洗後1.jpg'
 import workImg8 from '../public/img/空調保養/水塔消音毯更換後.jpg'
-
 
 const useStyles = makeStyles(theme => ({
     bgTitle: {
@@ -62,6 +61,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
+// banner
 const Banner = () => (
     <Box sx={{ position: 'relative' }}>
         <SliderCarousel sliderWidth={useWidthRwd()} />
@@ -83,6 +83,7 @@ const Banner = () => (
         </Box>
     </Box >
 )
+// service
 const ServiceInfo = ({ classes }) => (
     <Box sx={{ display: 'flex' }}>
         <Box sx={{ width: '100%', margin: '120px 0', position: 'relative', background: { xs: 'rgb(252, 252, 246)', lg: 'linear-gradient(90deg, white 50%, rgb(252, 252, 246) 0%)' } }}>
@@ -122,6 +123,7 @@ const ServiceInfo = ({ classes }) => (
         </Box>
     </Box>
 )
+// work
 const WorkInfo = ({ classes }) => {
     return (
         <Box sx={{ display: 'flex' }}>
@@ -150,77 +152,82 @@ const WorkInfo = ({ classes }) => {
         </Box >
     )
 }
-const fadeIn = keyframes`
-    0% {opacity: 1;}
-    50%{opacity: 1;}
-    100%{opacity: 0;}
-`
 const WorkImg = () => {
     const theme = useTheme()
-    const imgItems = [workImg1, workImg2, workImg3, workImg4, workImg5, workImg6, workImg7, workImg8]
-    const [countImg, setCountImg] = useState({
-        num: 0,
-        img: imgItems[0],
-        img2: imgItems[1],
-    })
-    const transitionStyles = {
-        animation: `${fadeIn} 2000ms ${theme.transitions.easing.easeInOut}`,
+    // 計算動畫 opacity
+    const fadeInAmin = () => {
+        let arr = []
+        for (let i = 0; i <= 8; i++) {
+            let x = (100 / 8) //8張圖片
+            if (i == 0) {
+                arr.push(keyframes`0% {opacity: 1;transform: scale(1);} ${x - 2}% {opacity: 1;} ${x}% {opacity: 0;transform: scale(1.1);}`)
+            } else arr.push(keyframes`0% {opacity: 0;} ${x * i - 2}% {opacity: 1;transform: scale(1);} ${x * (i + 1) - 2}% {opacity: 1;}${x * (i + 1)}% {opacity: 0;} 100% {opacity:0;transform: scale(1.1);}`)
+        }
+        return arr
     }
-    let countNum = 0
-    useEffect(() => {
-        setInterval(() => {
-            const imgLength = Number(imgItems.length)
-            if (countNum == imgLength - 2) {
-                countNum++
-                setCountImg({ num: countNum, img: imgItems[countNum], img2: imgItems[0] })
-            } else if (countNum == imgLength - 1) {
-                countNum = 0
-                setCountImg({ num: 0, img: imgItems[0], img2: imgItems[1] })
-            } else {
-                countNum++
-                setCountImg({ num: countNum, img: imgItems[countNum], img2: imgItems[countNum + 1] })
-            }
-        }, 2000);
-    }, []);
-
+    const fadeIn = fadeInAmin()
+    const imgInfos = [
+        {
+            img: workImg8,
+            anim: fadeIn[7]
+        },
+        {
+            img: workImg7,
+            anim: fadeIn[6]
+        },
+        {
+            img: workImg6,
+            anim: fadeIn[5]
+        },
+        {
+            img: workImg5,
+            anim: fadeIn[4]
+        },
+        {
+            img: workImg4,
+            anim: fadeIn[3]
+        },
+        {
+            img: workImg3,
+            anim: fadeIn[2]
+        },
+        {
+            img: workImg2,
+            anim: fadeIn[1]
+        },
+        {
+            img: workImg1,
+            anim: fadeIn[0]
+        }
+    ]
     return (
-        <Box key={countImg.num + 1} sx={{ backgroundImage: `url(${countImg.img2})`, width: '100%', height: '100%', position: 'relative' }}>
-            <Box key={countImg.num}
-                sx={{
-                    width: '100%', height: '100%', position: 'absolute', top: 0, left: 0,
-                    backgroundImage: `url(${countImg.img})`, ...transitionStyles,
-                }} />
+        <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+            {
+                imgInfos.map((items, i) => (
+                    <Box key={i} sx={{
+                        backgroundImage: `url(${items.img})`,
+                        zIndex: (i + 1) * 10,
+                        position: 'absolute',
+                        width: '100%',
+                        height: '100%',
+                        top: 0,
+                        left: 0,
+                        animation: `${items.anim} 30s ${theme.transitions.easing.easeInOut}`,
+                        opacity: 0,
+                        animationIterationCount: 'infinite'
+                    }} />
+                ))
+            }
+            <Box sx={{
+                backgroundImage: `url(${workImg1})`, width: '100%',
+                height: '100%'
+            }} />
         </Box>
     )
 }
-
+// faq
 const FaqInfo = ({ classes }) => {
-    const faqItems = [
-        {
-            title: '冷氣應多久保養一次？',
-            item: <FaqItem1 classes={classes} />,
-            url: '#faqItem1',
-            id: 'faqItem1'
-        },
-        {
-            title: '冷氣使用小秘訣',
-            item: <FaqItem2 classes={classes} />,
-            url: '#faqItem2',
-            id: 'faqItem2'
-        },
-        {
-            title: '如何挑選冷氣？',
-            item: <FaqItem8 classes={classes} />,
-            url: '#faqItem8',
-            id: 'faqItem8'
-        },
-        {
-            title: '冷氣省電絕招',
-            item: <FaqItem9 classes={classes} />,
-            url: '#faqItem9',
-            id: 'faqItem9'
-        },
-    ]
+
     return (
         <Box sx={{ display: 'flex', paddingTop: 25, paddingBottom: 25 }}>
             <Box sx={{
@@ -238,7 +245,7 @@ const FaqInfo = ({ classes }) => {
                             <Typography variant='h4' component='p' sx={{ color: 'var(--primary40)', fontFamily: 'Noto Serif TC' }}>關於冷氣的小知識</Typography>
                         </Box>
                         {
-                            faqItems.map(item => (
+                            [faqItems[0], faqItems[1], faqItems[7], faqItems[8]].map(item => (
                                 <QuestionCard getExpandIcon={<ExpandMoreRounded />} getDefaultExpand={false} faqTitle={item.title} faqItems={item.item} faqId={item.id} classes={classes} key={item.id} />
                             ))
                         }

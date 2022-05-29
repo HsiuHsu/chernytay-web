@@ -7,15 +7,14 @@ function WorkImageCard({ imageIsLoading, imgUrl, imgName, galleryTitle, galleryS
             height: '100%', borderRadius: 0,
             '& .MuiButtonBase-root': { display: 'flex', flexDirection: 'column', alignItems: 'center' }
         }}>
-            <CardActionArea>
+            <CardActionArea sx={{ height: '100%', justifyContent: 'flex-start' }}>
                 {
                     imageIsLoading ? (
                         <Skeleton variant='rectangular' height={250} />
                     ) : (
                         <CardMedia component='img' height='250'
-                            image={require('../public/img/' + imgUrl + '/' + imgName + '.jpg')}
-                            alt={imgName}
-                        />
+                            image={require('../public/img/jpg/' + imgUrl + '/' + imgName + '.jpg')}
+                            alt={imgName} />
                     )
                 }
                 <CardContent id={imgName} sx={{ width: '100%' }}>

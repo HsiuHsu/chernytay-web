@@ -7,7 +7,7 @@ import Nav from './Nav'
 function DefaultLayout({ children }) {
     let currentPath = useLocation().pathname
     return (
-        <Grid container direction="column">
+        <Grid container direction='column'>
             <CssBaseline />
             <Grid item><Nav /></Grid>
             <Grid item sx={{

@@ -1,40 +1,35 @@
 /** @jsxImportSource @emotion/react */
-import { jsx, css, keyframes } from "@emotion/react";
+import { jsx, css, keyframes } from '@emotion/react';
 import React, { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { Box, Grid, List, Skeleton, Stack, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
+import { Box, Grid, List, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from '@mui/material/styles';
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
-import WorkImageCard from "../components/WorkImageCard";
+import WorkImageCard from '../components/WorkImageCard';
 
 const workGalleryInfo = [
     {
         imgUrl: '小型空調',
         imgName: '分離式冷氣室外機',
-        galleryTitle: '小型空調',
         gallerySubtitle: '依照客戶的需求及空間大小，規劃空調的擺放位置與噸數。',
-        img: '/assets/image/分離式冷氣室外機.jpg',
         path: '/work/small-sized-air-condition'
     },
     {
         imgUrl: '大型空調',
         imgName: '多聯式室外機',
-        galleryTitle: '大型空調',
         gallerySubtitle: '配合客戶的需求及空間裝修的施工工程，提供客戶高品質的安裝服務。',
         path: '/work/big-sized-air-condition'
     },
     {
         imgUrl: '空調維修',
         imgName: '乾燥過濾器更換後',
-        galleryTitle: '空調維修',
         gallerySubtitle: '配依照現場評估空調的情況後，提供客戶最專業的維修品質。',
         path: '/work/air-condition-repair'
     },
     {
         imgUrl: '空調保養',
         imgName: '熱泵保養',
-        galleryTitle: '空調保養',
         gallerySubtitle: '定期維護與保養，檢查空調與零件，使冷氣用得安心、吹得舒適健康。',
         path: '/work/air-condition-maintain'
     }
@@ -95,10 +90,10 @@ const useStyles = makeStyles(theme => ({
         WebkitTextStroke: '1px var(--primary60)',
         opacity: 0.5,
         marginBottom: 8,
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             fontSize: 45,
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up('sm')]: {
             fontSize: 64,
         }
     },
@@ -158,11 +153,9 @@ function WorkPage() {
     return (
         <>
             <Box sx={{
-                paddingTop: 7, paddingBottom: 19,
+                paddingTop: 7, paddingBottom: 19, animation: `${anim} 200ms ${theme.transitions.easing.easeInOut}`,
                 backgroundImage: { xs: 'linear-gradient(180deg, white 20%, rgba(45, 107, 40, 0.3) 0%)', sm: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }
-            }}
-                css={css`: ${anim} 200ms ${theme.transitions.easing.easeInOut};`}
-            >
+            }}>
                 <ContainerStyles disableGutters>
                     <Typography variant='h1' component='h2' className={classes.workTitle}>Work</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>工程紀錄</Typography>
@@ -171,9 +164,8 @@ function WorkPage() {
                             workGalleryInfo.map(item => (
                                 <Grid item xs={12} sm={6} xl={4} key={item.imgName} onClick={() => navigate(item.path)}>
                                     <WorkImageCard
-                                        imgUrl={item.imgUrl} imgName={item.imgName} imageIsLoading={imageIsLoading}
-                                        galleryTitle={item.galleryTitle} gallerySubtitle={item.gallerySubtitle}
-                                        path={item.path}
+                                        imgUrl={item.imgUrl} imgName={item.imgName} galleryTitle={item.imgUrl} gallerySubtitle={item.gallerySubtitle}
+                                        imageIsLoading={imageIsLoading} path={item.path}
                                     />
                                 </Grid>))
                         }
@@ -182,9 +174,7 @@ function WorkPage() {
             </Box>
             <Box sx={{ margin: '112px 0', background: 'var(--surface)' }}>
                 <ContainerStyles disableGutters className={classes.customerGroup}>
-                    <Typography variant='h1' component='h2' sx={{
-                        position: 'absolute', top: { xs: -24, sm: -40 }
-                    }} className={classes.workTitle}>Customer</Typography>
+                    <Typography variant='h1' component='h2' sx={{ position: 'absolute', top: { xs: -24, sm: -40 } }} className={classes.workTitle}>Customer</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>優質客戶</Typography>
                     <List className={classes.customerListGroup}>
                         {

@@ -3,7 +3,6 @@ import { Container, Typography, TextField } from '@mui/material'
 
 // nav 按鈕
 export const NavListItemTypo = styled(Typography)(({ theme }) => ({
-    color: 'var(--neutral20)',
     position: 'relative',
     cursor: 'pointer',
     '&:hover': { color: 'var(--primary60)' },
@@ -13,7 +12,7 @@ export const NavListItemTypo = styled(Typography)(({ theme }) => ({
         paddingTop: 24,
         paddingBottom: 24
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
         textAlign: 'none',
         marginLeft: 24,
         '&::before': {
@@ -34,24 +33,24 @@ export const NavListItemTypo = styled(Typography)(({ theme }) => ({
 
 // 響應式設定
 export const ContainerStyles = styled(Container)(({ theme }) => ({
-    [theme.breakpoints.up("xs")]: {
+    [theme.breakpoints.up('xs')]: {
         width: 'auto',
         marginRight: 16,
         marginLeft: 16
     },
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up('sm')]: {
         marginRight: 32,
         marginLeft: 32
     },
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up('md')]: {
         marginRight: 24,
         marginLeft: 24
     },
-    [theme.breakpoints.up("lg")]: {
+    [theme.breakpoints.up('lg')]: {
         marginRight: 200,
         marginLeft: 200
     },
-    [theme.breakpoints.up("xl")]: {
+    [theme.breakpoints.up('xl')]: {
         margin: '0 auto',
         padding: 0,
         maxWidth: 1128,

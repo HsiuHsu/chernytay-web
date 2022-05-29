@@ -9,8 +9,8 @@ const useStyles = makeStyles((theme) => ({
     faqContainer: {
         background: 'var(--surface)',
         display: 'flex',
-        paddingTop: '72px',
-        paddingBottom: '144px',
+        paddingTop: '56px',
+        paddingBottom: '144px'
     },
     faqTitle: {
         marginBottom: 8,
@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Open Sans',
         fontWeight: 'bold',
         opacity: 0.5,
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             fontSize: 45,
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up('sm')]: {
             fontSize: 64,
-        },
+        }
     },
     faqSubtitle: {
         marginBottom: 48,
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         scrollBehavior: 'smooth'
     },
     questionTitle: {
-        color: 'var(--on-surface-variant)',
+        color: 'var(--on-surface-variant)'
     }
 }))
 

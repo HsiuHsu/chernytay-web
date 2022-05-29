@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Box, Divider, Grid, Typography, InputLabel, Stack, Button, Checkbox } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { useTheme } from "@mui/material/styles";
+import { useTheme } from '@mui/material/styles';
 import { AppRegistrationRounded, PhoneRounded } from '@mui/icons-material'
 import { ContainerStyles, CustomerTextField } from '../utils/useCustomerComponentStyles'
 
@@ -13,47 +13,47 @@ const useStyles = makeStyles(theme => ({
         fontFamily: 'Open Sans',
         fontWeight: 'bold',
         opacity: 0.5,
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             fontSize: 45,
         },
-        [theme.breakpoints.up("sm")]: {
+        [theme.breakpoints.up('sm')]: {
             fontSize: 64,
-        },
+        }
     },
     // 聯絡資訊
     infoGroup: {
         background: 'var(--primary99)',
-        [theme.breakpoints.up("xs")]: {
-            padding: '56px 24px',
+        [theme.breakpoints.up('xs')]: {
+            padding: '56px 24px'
         },
-        [theme.breakpoints.up("sm")]: {
-            padding: '56px 64px',
-        },
+        [theme.breakpoints.up('sm')]: {
+            padding: '56px 64px'
+        }
     },
     infoItems: {
         display: 'flex',
         justifyContent: 'space-between',
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             flexDirection: 'column'
         },
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up('md')]: {
             flexDirection: 'row'
-        },
+        }
     },
     infoTxt: {
         marginBottom: '6px',
         color: 'var(--neutral20)'
     },
     infoMapGroup: {
-        [theme.breakpoints.up("xs")]: {
+        [theme.breakpoints.up('xs')]: {
             width: '100%',
             marginTop: 48
         },
-        [theme.breakpoints.up("md")]: {
+        [theme.breakpoints.up('md')]: {
             width: '62.5%',
             marginLeft: 24,
             marginTop: 0
-        },
+        }
     },
     // 預約
     contactPhone: {
@@ -71,14 +71,14 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         boxShadow: '0px 1px 3px rgba(0,0,0,0.25)',
         [theme.breakpoints.up('xs')]: {
-            padding: '24px',
+            padding: '24px'
         },
         [theme.breakpoints.up('sm')]: {
-            padding: '48px 24px',
+            padding: '48px 24px'
         },
         [theme.breakpoints.up('md')]: {
-            padding: '48px 96px',
-        },
+            padding: '48px 96px'
+        }
     },
     inputTitle: {
         display: 'flex',
@@ -114,16 +114,16 @@ const useStyles = makeStyles(theme => ({
         color: 'var(--white)',
         backgroundColor: 'var(--primary60)',
         '&:hover': {
-            backgroundColor: 'var(--primary40)',
+            backgroundColor: 'var(--primary40)'
         },
         [theme.breakpoints.up('xs')]: {
-            width: '100%',
+            width: '100%'
         },
         [theme.breakpoints.up('sm')]: {
             width: '75%',
             marginLeft: '25%',
-            marginTop: 24,
-        },
+            marginTop: 24
+        }
     },
     checkBox: {
         width: 16,
@@ -132,7 +132,7 @@ const useStyles = makeStyles(theme => ({
         color: 'var(--neutral20)',
         '&.Mui-checked': {
             color: 'var(--primary60)',
-        },
+        }
     },
     checkBoxLabel: {
         color: 'var(--neutral20)'
@@ -142,16 +142,16 @@ const useStyles = makeStyles(theme => ({
             width: '100%',
             flexDirection: 'row',
             flexWrap: 'wrap',
-            marginTop: 0,
+            marginTop: 0
         },
         [theme.breakpoints.up('sm')]: {
             width: '75%',
-            marginLeft: 24,
-        },
+            marginLeft: 24
+        }
     },
     textArea: {
         '& .MuiOutlinedInput-root': {
-            padding: 0,
+            padding: 0
         }
     },
     textAreaTitle: {
@@ -212,7 +212,7 @@ const Information = ({ classes }) => {
                         }
                     </Box>
                     <Box className={classes.infoMapGroup}>
-                        <Avatar src={require('../public/png/map.png')} alt='map' variant='square' sx={{ width: '100%', height: 'auto' }} />
+                        <Avatar src={require('../public/img/png/map.png')} alt='map' variant='square' sx={{ width: '100%', height: 'auto' }} />
                         <Typography variant='body2' component='a' href='https://www.google.com.tw/maps/place/%E6%88%90%E6%B3%B0%E5%86%B7%E5%87%8D%E7%A9%BA%E8%AA%BF%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/@23.4750252,120.4328942,19z/data=!4m5!3m4!1s0x346e969db240be1f:0xd347ed10467411c8!8m2!3d23.4750506!4d120.4331484?hl=zh-TW'
                             target='_blank' rel='noreferrer noopener' sx={{ color: 'var(--primary40)', display: 'block', textAlign: 'right', marginTop: '12px' }}>查看google地圖</Typography>
                     </Box>

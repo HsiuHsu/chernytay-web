@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useWidthRwd = () => {
-    const [width, setWidth] = useState(0)
+    const [width, setWidth] = useState(document.documentElement.clientWidth)
     const getWidth = () => setWidth(document.documentElement.clientWidth)
     useEffect(() => {
         getWidth()

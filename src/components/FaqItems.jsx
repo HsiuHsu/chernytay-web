@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, List, Paper, Typography } from "@mui/material"
+import { Box, List, Paper, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
         },
         '& li:nth-last-child(1)': {
             marginBottom: 0
-        },
-    },
+        }
+    }
 }))
 
 const FaqItem1 = () => {

@@ -4,7 +4,8 @@ import { AppBar, Avatar, Box, Drawer, IconButton, List, ListItem, ListItemText, 
 import { makeStyles } from '@mui/styles';
 import { MenuRounded, CloseRounded } from '@mui/icons-material';
 import { ContainerStyles, NavListItemTypo } from '../utils/useCustomerComponentStyles'
-import companyLogo from '../public/svg/company-logo.svg'
+import companyLogo from '../public/img/svg/company-logo.svg'
+import companyLogoWhite from '../public/img/svg/company-logo-white.svg'
 
 const menuItems = [
     {
@@ -46,7 +47,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('md')]: {
             height: 100
-        },
+        }
     },
     iconState: {
         [theme.breakpoints.up('xs')]: {
@@ -54,7 +55,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('md')]: {
             display: 'none'
-        },
+        }
     },
     listIcon: {
         width: '100%',
@@ -69,7 +70,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('sm')]: {
             height: 80,
             paddingRight: 32,
-        },
+        }
     },
     listItems: {
         display: 'flex',
@@ -77,7 +78,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('md')]: {
             padding: '12px 0',
             marginLeft: 36,
-        },
+        }
     },
     listItemsBar: {
         borderTop: '1px solid #000',
@@ -87,7 +88,7 @@ const useStyles = makeStyles(theme => ({
         [theme.breakpoints.up('xs')]: {
             paddingTop: 24,
             paddingBottom: 24,
-        },
+        }
     },
     drawer: {
         [theme.breakpoints.up('xs')]: {
@@ -95,7 +96,7 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('sm')]: {
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '40%' },
-        },
+        }
     },
     linkFocus: {
         color: 'var(--primary60)',
@@ -103,23 +104,29 @@ const useStyles = makeStyles(theme => ({
             '&::before': {
                 width: '100%',
             },
-        },
-    },
-    // scroll
+        }
+    }
 }))
+
+// nav change link list group
 const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath, colorStyle }) => (
     <List disablePadding className={getBar ? classes.listItemsBar : classes.listItems}>
         {menuItems.map((menu) => (
-            <NavListItemTypo variant='subtitle1' component='a' key={menu.name}
+            <NavListItemTypo variant='subtitle1' component='a' key={menu.name} onClick={() => handleMenuItemClick(menu.path)}
                 sx={{ color: { md: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--neutral20)' } }}
-                className={currentPath.includes(menu.path) ? classes.linkFocus : ''} onClick={() => handleMenuItemClick(menu.path)}
+                className={currentPath.includes(menu.path) ? classes.linkFocus : ''}
             >{menu.title}</NavListItemTypo>
         ))}
     </List>
 )
+
+//width<905 menu icon
 const MenuIcons = ({ classes, menuIcon, handleMenuIcon, currentPath, colorStyle }) => (
     <IconButton aria-label='open drawer' edge='start' onClick={handleMenuIcon} className={classes.iconState}>
-        {menuIcon ? <CloseRounded sx={{ fontSize: 24, color: 'var(--neutral20)' }} /> : <MenuRounded sx={{ fontSize: 24, color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--neutral20)' }} />}
+        {
+            menuIcon ? <CloseRounded sx={{ fontSize: 24, color: 'var(--neutral20)' }} /> :
+                <MenuRounded sx={{ fontSize: 24, color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--neutral20)' }} />
+        }
     </IconButton>
 )
 
@@ -142,24 +149,23 @@ function Nav() {
         navigate(getPath)
         handleOnTop()
     }
-    // 點擊側邊bar按鈕(menu open/close)
-    const handleMenuIcon = () => setMenuIcon && setMenuIcon(pre => !pre)
-    //重整頁面回到頂部
-    window.onbeforeunload = function () {
+    const handleMenuIcon = () => setMenuIcon && setMenuIcon(pre => !pre)  // 點擊側邊bar按鈕(menu open/close)
+
+    window.onbeforeunload = function () {  //重整頁面回到頂部
         document.documentElement.scrollTop = 0;  //ie
         document.body.scrollTop = 0;  //非ie
     }
-    // 側邊bar(open/close), menu icon(open/close), width<600 企業名稱隱藏
-    useEffect(() => {
+
+    useEffect(() => {  // 側邊bar(open/close), menu icon(open/close), width<600 企業名稱隱藏
         const showBtn = () => {
-            if (document.documentElement.clientWidth < 905) {
-                setGetBar(true)
+            if (document.documentElement.clientWidth < 905) { // width<905 
+                setGetBar(true)  // menu改成側邊bar
             } else {
                 setGetBar(false)
                 setMenuIcon(false)
             }
             if (document.documentElement.clientWidth < 600) {
-                setCompanyName(false)
+                setCompanyName(false)  // width<600 企業名稱隱藏
             } else setCompanyName(true)
         }
         showBtn()
@@ -168,8 +174,7 @@ function Nav() {
             window.removeEventListener('resize', showBtn)
         }
     }, [])
-    // change home page color (scroll nav)
-    useEffect(() => {
+    useEffect(() => {  // change home page color (scroll nav)
         const getCurrentScroll = () => { return window.scrollY || document.documentElement.scrollTop }
         window.onscroll = () => {
             // 大於1240 height=windows.height
@@ -189,13 +194,17 @@ function Nav() {
     }, [])
 
     return (
-        <AppBar className={classes.appBar} elevation={currentPath === '/' && colorStyle === true ? 0 : 1} sx={{ background: currentPath === '/' && colorStyle === true ? 'rgba(255,255,255,0)' : 'rgba(255,255,255)' }}>
+        <AppBar className={classes.appBar} elevation={currentPath === '/' && colorStyle === true ? 0 : 1}
+            sx={{ background: currentPath === '/' && colorStyle === true ? 'rgba(255,255,255,0)' : 'rgba(255,255,255)' }}>
             <ContainerStyles disableGutters className={classes.container}>
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
-                        <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}><img src={companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} /></Avatar>
+                        <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}>
+                            <img src={colorStyle === true ? companyLogoWhite : companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} />
+                        </Avatar>
                         {
-                            companyName && <Typography variant='h5' component='h2' sx={{ color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
+                            companyName && <Typography variant='h5' component='h2'
+                                sx={{ color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--primary40)' }}>成泰冷凍空調有限公司</Typography>
                         }
                     </Box>
                     {/*width > 905 */}

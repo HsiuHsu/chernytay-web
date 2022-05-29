@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { Box, IconButton, Stack } from '@mui/material'
 import { ArrowBackIosRounded, ArrowForwardIosRounded } from '@mui/icons-material'
-import slierImg1 from '../public/img/小型空調/吊隱冷氣線型出風口.jpg'
-import slierImg2 from '../public/img/大型空調/多聯吊隱室內機.jpg'
-import slierImg3 from '../public/img/大型空調/方形冷卻水塔.jpg'
-import { useTheme } from "@mui/material/styles";
+import slierImg1 from '../public/img/jpg/小型空調/吊隱冷氣線型出風口.jpg'
+import slierImg2 from '../public/img/jpg/大型空調/多聯吊隱室內機.jpg'
+import slierImg3 from '../public/img/jpg/大型空調/方形冷卻水塔.jpg'
+import useWidthRwd from '../hooks/useWidthRwd'
 
 const ArrowBtn = ({ direction, handleArrowClick }) => (
     <IconButton onClick={handleArrowClick}
@@ -13,7 +13,6 @@ const ArrowBtn = ({ direction, handleArrowClick }) => (
             top: '50%',
             right: `${direction === 'right' && '24px'}`,
             left: `${direction === 'left' && '24px'}`,
-            // background: 'rgba(255,255,255,0.3)',
             opacity: 0.5,
             borderRadius: '50%',
             display: 'flex',
@@ -84,27 +83,40 @@ const SlideDot = ({ content, activeIndex, slider, setSlider, windowWidth }) => {
     )
 }
 
-function SliderCarousel({ sliderWidth }) {
+function SliderCarousel() {
+    const sliderWidth = useWidthRwd()
     const content = [slierImg1, slierImg2, slierImg3]
     const [slider, setSlider] = useState({
         activeIndex: 0, // 當前圖片index
         translate: 0,   // slide width
     })
     const { activeIndex, translate } = slider
-    // 按鈕 => 下一張
-    const nextSlide = () => {
+    const autoPlayRef = useRef(null)  //slider auto play
+
+    const nextSlide = () => {  // button => next img
         if (activeIndex === content.length - 1) {
-            return setSlider({ ...slider, activeIndex: 0, translate: 0 })
-        }
-        setSlider({ ...slider, activeIndex: activeIndex + 1, translate: (activeIndex + 1) * sliderWidth })
+            return setSlider({ activeIndex: 0, translate: 0 })
+        } else setSlider({ activeIndex: activeIndex + 1, translate: (activeIndex + 1) * sliderWidth })
     }
-    // 按鈕 => 前一張
-    const preSlide = () => {
+    const preSlide = () => {  // button => pre img
         if (activeIndex === 0) {
-            return setSlider({ ...slider, activeIndex: slider.length - 1, translate: (slider.length - 1) * sliderWidth })
-        }
-        setSlider({ ...slider, activeIndex: activeIndex - 1, translate: (activeIndex - 1) * sliderWidth })
+            return setSlider({ activeIndex: content.length - 1, translate: (content.length - 1) * sliderWidth })
+        } else setSlider({ activeIndex: activeIndex - 1, translate: (activeIndex - 1) * sliderWidth })
     }
+
+    //slider auto play
+    useEffect(() => {
+        const resetTimeout = () => {
+            if (autoPlayRef.current) {
+                clearTimeout(autoPlayRef.current)
+            }
+        }
+        resetTimeout();
+        autoPlayRef.current = setTimeout(
+            () => nextSlide(), 3000
+        );
+        return () => resetTimeout()
+    }, [activeIndex]);
 
     return (
         <Box sx={{

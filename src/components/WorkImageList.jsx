@@ -9,12 +9,8 @@ const ImgItem = ({ imgUrl, imgName, name }) => {
     return (
         <>
             <ImageListItem sx={{ marginBottom: '24px !important', position: 'relative' }}>
-                <img
-                    src={require('../public/img/' + imgUrl + imgName + '.jpg')}
-                    alt={name}
-                    loading='lazy'
-                    onClick={() => setImgView(true)}
-                    style={{ cursor: 'pointer' }}
+                <img src={require('../public/img/jpg/' + imgUrl + imgName + '.jpg')} alt={name}
+                    loading='lazy' onClick={() => setImgView(true)} style={{ cursor: 'pointer' }}
                 />
                 <ImageListItemBar position='bottom' title={name}
                     sx={{
@@ -28,22 +24,15 @@ const ImgItem = ({ imgUrl, imgName, name }) => {
             </ImageListItem>
             <Backdrop invisible sx={{ zIndex: 1200, backgroundColor: 'rgba(0,0,0,0.9)' }} open={imgView} onClick={() => setImgView(false)}>
                 <ContainerStyles disableGutters>
-                    <IconButton sx={{
+                    <IconButton onClick={() => setImgView(false)} sx={{
                         position: 'absolute', top: 0, right: 0, margin: 2, backgroundColor: 'var(--neutral60)', opacity: 0.5,
                         '&:hover': { backgroundColor: 'var(--neutral40)', }
-                    }}
-                        onClick={() => setImgView(false)}>
+                    }}>
                         <CloseRounded sx={{ color: 'var(--white)', fontSize: { xs: 14, md: 24 } }} />
                     </IconButton>
-                    <div style={{
-                        display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '56px 0',
-                        height: '80vh'
-                    }}>
-                        <img
-                            src={require('../public/img/' + imgUrl + imgName + '.jpg')}
-                            alt={name}
-                            loading='lazy'
-                            style={{ maxWidth: '100%', maxHeight: '80vh' }}
+                    <div style={{ height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '56px 0' }}>
+                        <img src={require('../public/img/jpg/' + imgUrl + imgName + '.jpg')} alt={name}
+                            loading='lazy' style={{ maxWidth: '100%', maxHeight: '80vh' }}
                         />
                     </div>
                 </ContainerStyles>

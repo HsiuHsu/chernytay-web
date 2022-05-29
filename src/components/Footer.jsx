@@ -4,7 +4,7 @@ import { AppRegistrationRounded } from '@mui/icons-material'
 import { Avatar, Box, Button, Grid, Stack, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
-import companyLogo from '../public/svg/company-logo-white.svg'
+import companyLogo from '../public/img/svg/company-logo-white.svg'
 
 const companyInfos = [
     {
@@ -21,15 +21,15 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 24,
         '& p:nth-last-child(1)': {
             marginBottom: 0
-        },
+        }
     },
     infosTitle: {
         paddingBottom: '6px',
         borderBottom: '1px solid var(--primary60)',
-        marginBottom: '12px',
+        marginBottom: '12px'
     },
     infosItem: {
-        marginBottom: '6px',
+        marginBottom: '6px'
     },
     addLineBtn: {
         width: '100%',
@@ -57,7 +57,9 @@ function Footer() {
                 <Grid container spacing={3} sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Grid item xs={12} md={6} xl={4} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                         <Stack direction='row' alignItems='center'>
-                            <Avatar variant="rounded" sx={{ background: 'rgba(0,0,0,0)', marginRight: '12px' }}><img src={companyLogo} alt='CherngTay' /></Avatar>
+                            <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: '12px' }}>
+                                <img src={companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} />
+                            </Avatar>
                             <Typography variant='h5'>成泰冷凍空調有限公司</Typography>
                         </Stack>
                         <Typography variant='body2' sx={{ marginTop: '12px' }}>&copy; 成泰冷凍空調有限公司 All Rights Reserved. </Typography>
@@ -78,7 +80,7 @@ function Footer() {
                             }
                         </Grid>
                         <Grid item xs={6} sm={4} md={12} xl={3} sx={{ marginLeft: { xs: 0, xl: 3 }, marginTop: { xs: 6, xl: 0 }, display: 'flex', flexDirection: { xs: 'column', md: 'row', xl: 'column' } }}>
-                            <Button variant='contained' disableElevation href='https://line.me/ti/p/TG3gfy3iYg' target="_blank" rel="noreferrer noopener"
+                            <Button variant='contained' disableElevation href='https://line.me/ti/p/TG3gfy3iYg' target='_blank' rel='noreferrer noopener'
                                 className={classes.addLineBtn} sx={{ ':hover': { backgroundColor: 'var(--neutral90)' } }}>
                                 <Typography variant='button' sx={{ color: 'var(--primary40)' }}>
                                     添加LINE好友

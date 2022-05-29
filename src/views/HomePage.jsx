@@ -8,14 +8,14 @@ import { makeStyles, useTheme } from '@mui/styles'
 import { faqItems } from '../components/FaqItems'
 import QuestionCard from '../components/QuestionCard'
 import SliderCarousel from '../components/SliderCarousel'
-import workImg1 from '../public/img/jpg/小型空調/分離式冷氣銅配管.jpg'
-import workImg2 from '../public/img/jpg/小型空調/雙風扇分離式冷氣室外機.jpg'
-import workImg3 from '../public/img/jpg/大型空調/室內送風機.jpg'
-import workImg4 from '../public/img/jpg/大型空調/氣冷式冰水主機.jpg'
+import workImg1 from '../public/img/jpg/小型空調/分離式冷氣室外機2.jpg'
+import workImg2 from '../public/img/jpg/小型空調/室外管槽安裝2.jpg'
+import workImg3 from '../public/img/jpg/大型空調/主機配管鋁皮包覆.jpg'
+import workImg4 from '../public/img/jpg/大型空調/多聯式室外機.jpg'
 import workImg5 from '../public/img/jpg/空調維修/水塔散熱材更換後.jpg'
-import workImg6 from '../public/img/jpg/空調維修/逆止閥更新後.jpg'
+import workImg6 from '../public/img/jpg/空調維修/乾燥過濾器更換後.jpg'
 import workImg7 from '../public/img/jpg/空調保養/水塔清洗後1.jpg'
-import workImg8 from '../public/img/jpg/空調保養/水塔消音毯更換後.jpg'
+import workImg8 from '../public/img/jpg/空調保養/分離式室外機保養.jpg'
 
 const useStyles = makeStyles(theme => ({
     bgTitle: {
@@ -160,8 +160,8 @@ const WorkImg = () => {
         for (let i = 0; i <= 8; i++) {
             let x = (100 / 8) //8張圖片
             if (i == 0) {
-                arr.push(keyframes`0% {opacity: 1;transform: scale(1);} ${x - 2}% {opacity: 1;} ${x}% {opacity: 0;transform: scale(1.1);}`)
-            } else arr.push(keyframes`0% {opacity: 0;} ${x * i - 2}% {opacity: 1;transform: scale(1);} ${x * (i + 1) - 2}% {opacity: 1;}${x * (i + 1)}% {opacity: 0;} 100% {opacity:0;transform: scale(1.1);}`)
+                arr.push(keyframes`0% {opacity: 1;transform: scale(1);} ${x - 2}% {opacity: 1;} ${x}% {opacity: 0;transform: scale(1.05);}`)
+            } else arr.push(keyframes`0% {opacity: 0;} ${x * i - 2}% {opacity: 1;transform: scale(1);} ${x * (i + 1) - 2}% {opacity: 1;}${x * (i + 1)}% {opacity: 0;} 100% {opacity:0;transform: scale(1.05);}`)
         }
         return arr
     }
@@ -214,13 +214,15 @@ const WorkImg = () => {
                         left: 0,
                         animation: `${items.anim} 30s ${theme.transitions.easing.easeInOut}`,
                         opacity: 0,
-                        animationIterationCount: 'infinite'
+                        animationIterationCount: 'infinite',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundSize: 'cover'
                     }} />
                 ))
             }
             <Box sx={{
-                backgroundImage: `url(${workImg1})`, width: '100%',
-                height: '100%'
+                backgroundImage: `url(${workImg1})`, width: '100%', height: '100%',
+                backgroundRepeat: 'no-repeat', backgroundSize: 'cover'
             }} />
         </Box>
     )

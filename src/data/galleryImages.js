@@ -9,13 +9,13 @@ export const smallSizedAirConditionImg = [
         id: 'smallSize2',
         name: '分離式冷氣室外機',
         imgUrl: '小型空調/',
-        imgName: '分離式冷氣室外機 (2)',
+        imgName: '分離式冷氣室外機2',
     },
     {
         id: 'smallSize3',
         name: '分離式冷氣室外機',
         imgUrl: '小型空調/',
-        imgName: '分離式冷氣室外機 (3)',
+        imgName: '分離式冷氣室外機3',
     },
     {
         id: 'smallSize4',
@@ -57,7 +57,7 @@ export const smallSizedAirConditionImg = [
         id: 'smallSize10',
         name: '室外管槽安裝',
         imgUrl: '小型空調/',
-        imgName: '室外管槽安裝 (2)',
+        imgName: '室外管槽安裝2',
     },
     {
         id: 'smallSize11',
@@ -126,7 +126,7 @@ export const bigSizedAirConditionImg = [
         id: 'bigSize8',
         name: '多聯式室外機',
         imgUrl: '大型空調/',
-        imgName: '多聯式室外機 (2)',
+        imgName: '多聯式室外機2',
     },
     {
         id: 'bigSize9',
@@ -138,7 +138,7 @@ export const bigSizedAirConditionImg = [
         id: 'bigSize10',
         name: '空調室內送風機',
         imgUrl: '大型空調/',
-        imgName: '空調室內送風機 (2)',
+        imgName: '空調室內送風機2',
     },
     {
         id: 'bigSize11',
@@ -168,13 +168,13 @@ export const bigSizedAirConditionImg = [
         id: 'bigSize15',
         name: '氣冷式冰水主機',
         imgUrl: '大型空調/',
-        imgName: '氣冷式冰水主機 (2)',
+        imgName: '氣冷式冰水主機2',
     },
     {
         id: 'bigSize16',
         name: '氣冷式冰水主機',
         imgUrl: '大型空調/',
-        imgName: '氣冷式冰水主機 (3)',
+        imgName: '氣冷式冰水主機2',
     },
     {
         id: 'bigSize17',
@@ -192,7 +192,7 @@ export const bigSizedAirConditionImg = [
         id: 'bigSize19',
         name: '氣冷式室外機',
         imgUrl: '大型空調/',
-        imgName: '氣冷式室外機 (2)',
+        imgName: '氣冷式室外機2',
     },
     {
         id: 'bigSize20',
@@ -210,7 +210,7 @@ export const bigSizedAirConditionImg = [
         id: 'bigSize22',
         name: '氣冷箱型訂製風管',
         imgUrl: '大型空調/',
-        imgName: '氣冷箱型訂製風管 (2)',
+        imgName: '氣冷箱型訂製風管2',
     },
     {
         id: 'bigSize23',
@@ -249,7 +249,7 @@ export const repairAirConditionImg = [
         id: 'repairImg2',
         name: '水塔皮帶更換',
         imgUrl: '空調維修/',
-        imgName: '水塔皮帶更換 (2)',
+        imgName: '水塔皮帶更換2',
     },
     {
         id: 'repairImg3',
@@ -420,7 +420,7 @@ export const maintainAirConditionImg = [
         id: 'maintainImg13',
         name: '主機保養',
         imgUrl: '空調保養/',
-        imgName: '主機保養 (2)',
+        imgName: '主機保養2',
     },
     {
         id: 'maintainImg14',
@@ -432,7 +432,7 @@ export const maintainAirConditionImg = [
         id: 'maintainImg15',
         name: '主機藥洗保養',
         imgUrl: '空調保養/',
-        imgName: '主機藥洗保養 (2)',
+        imgName: '主機藥洗保養2',
     },
     {
         id: 'maintainImg16',
@@ -468,7 +468,7 @@ export const maintainAirConditionImg = [
         id: 'maintainImg21',
         name: '氣冷式外機清洗保養',
         imgUrl: '空調保養/',
-        imgName: '氣冷式外機清洗保養 (2)',
+        imgName: '氣冷式外機清洗保養2',
     },
     {
         id: 'maintainImg22',

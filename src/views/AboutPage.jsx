@@ -153,7 +153,7 @@ function AboutPage() {
                             </Grid>
                         </Grid>
                         <Grid item xs={12} sm={6} md={4} className={classes.aboutImg} sx={{ animation: `${fadeIn} 2000ms ${theme.transitions.easing.easeInOut}` }}>
-                            <Avatar src={require('../public/img/jpg/小型空調/分離式冷氣室外機 (3).jpg')} variant='square' sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+                            <Avatar src={require('../public/img/jpg/小型空調/分離式冷氣室外機3.jpg')} variant='square' sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
                         </Grid>
                     </Grid>
                 </div>

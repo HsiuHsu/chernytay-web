@@ -200,7 +200,7 @@ function Nav() {
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
                         <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}>
-                            <img src={colorStyle === true ? companyLogoWhite : companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} />
+                            <img src={currentPath === '/' && colorStyle === true ? companyLogoWhite : companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} />
                         </Avatar>
                         {
                             companyName && <Typography variant='h5' component='h2'

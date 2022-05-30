@@ -1,17 +1,24 @@
 import React, { useState } from 'react'
-import { Backdrop, IconButton, ImageList, ImageListItem, ImageListItemBar } from '@mui/material';
+import { Backdrop, IconButton, ImageList, ImageListItem, ImageListItemBar, Skeleton } from '@mui/material'
 import { CloseRounded } from '@mui/icons-material'
-import { ContainerStyles } from '../utils/useCustomerComponentStyles';
+import { ContainerStyles } from '../utils/useCustomerComponentStyles'
+import { useTheme } from '@mui/styles'
+import useImgLoading from '../hooks/useImgLoading'
+import { fadeIn } from '../public/css/animation'
 
 const ImgItem = ({ imgUrl, imgName, name }) => {
+    const isLoading = useImgLoading()
     // icon close pic
     const [imgView, setImgView] = useState(false)
     return (
         <>
-            <ImageListItem sx={{ marginBottom: '24px !important', position: 'relative' }}>
-                <img src={require('../public/img/jpg/' + imgUrl + imgName + '.jpg')} alt={name}
-                    loading='lazy' onClick={() => setImgView(true)} style={{ cursor: 'pointer' }}
-                />
+            <ImageListItem sx={{ marginBottom: { xs: '8px !important', sm: '24px !important' }, position: 'relative', width: '100%' }}>
+                {
+                    isLoading ? <Skeleton variant='rectangular' sx={{ width: '100%', height: { xs: 150, sm: 250 } }} /> :
+                        <img src={require('../public/img/jpg/' + imgUrl + imgName + '.jpg')} alt={name}
+                            loading='lazy' onClick={() => setImgView(true)} style={{ cursor: 'pointer' }}
+                        />
+                }
                 <ImageListItemBar position='bottom' title={name}
                     sx={{
                         '& div': { padding: 0 },
@@ -42,6 +49,7 @@ const ImgItem = ({ imgUrl, imgName, name }) => {
 }
 
 function WorkImageList(getImg) {
+    const theme = useTheme()
     return (
         <ImageList variant='masonry' sx={{
             columnCount: {
@@ -50,10 +58,11 @@ function WorkImageList(getImg) {
                 xl: '3 !important'
             },
             columnGap: {
-                xs: '24px !important',
+                xs: '8px !important',
                 sm: '16px !important',
-                xl: '24px !important',
-            }
+                xl: '24px !important'
+            },
+            animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}`
         }}>
             {
                 getImg.getImg.map(item =>

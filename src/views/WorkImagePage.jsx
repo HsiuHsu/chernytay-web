@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
 function WorkImagePage() {
     let navigate = useNavigate()
     let getPath = useLocation().pathname
-
     const classes = useStyles()
     const [getImgTitle, setGetImgTitle] = useState({
         imgTitle: '',

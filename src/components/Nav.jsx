@@ -181,7 +181,7 @@ function Nav() {
             sx={{ background: currentPath === '/' && colorStyle === true ? 'rgba(255,255,255,0)' : 'rgba(255,255,255)' }}>
             <ContainerStyles disableGutters className={classes.container}>
                 <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/') }}>
+                    <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => { navigate('/'); handleOnTop() }}>
                         <Avatar variant='rounded' sx={{ background: 'rgba(0,0,0,0)', marginRight: 1 }}>
                             <img src={currentPath === '/' && colorStyle === true ? companyLogoWhite : companyLogo} alt='CherngTay' style={{ width: '80%', height: '80%' }} />
                         </Avatar>

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Avatar, Box, Divider, Grid, Typography, InputLabel, Stack, Button, Checkbox } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { useTheme } from '@mui/material/styles';
+import { Avatar, Box, Divider, Grid, Typography, InputLabel, Stack, Button, Checkbox, Skeleton } from '@mui/material'
+import { makeStyles, useTheme } from '@mui/styles'
 import { AppRegistrationRounded, PhoneRounded } from '@mui/icons-material'
 import { ContainerStyles, CustomerTextField } from '../utils/useCustomerComponentStyles'
+import { fadeInAndTransform, fadeIn } from '../public/css/animation'
+import useImgLoading from '../hooks/useImgLoading'
 
 const useStyles = makeStyles(theme => ({
     contactTitle: {
@@ -178,6 +179,8 @@ const useStyles = makeStyles(theme => ({
 
 // 聯絡資訊
 const Information = ({ classes }) => {
+    const theme = useTheme()
+    const isLoading = useImgLoading()
     const information = {
         company: '成泰冷凍空調有限公司',
         subtitle: '專業空調工程服務',
@@ -195,7 +198,7 @@ const Information = ({ classes }) => {
         ]
     }
     return (
-        <Grid container display='flex' justifyContent='flex-end' sx={{ position: 'relative', height: 'fit-content', paddingTop: 12, paddingBottom: 18 }}>
+        <Grid container display='flex' justifyContent='flex-end' sx={{ position: 'relative', height: 'fit-content', paddingTop: 12, paddingBottom: 18, animation: `${fadeInAndTransform} 1000ms ${theme.transitions.easing.easeInOut}` }}>
             <Typography variant='h1' component='h2' className={classes.contactTitle} sx={{ position: 'absolute', left: 0, top: { xs: 72, sm: 56 } }}>Information</Typography>
             <Grid item xs={12} xl={10} className={classes.infoGroup}>
                 <Typography variant='subtitle1' sx={{ color: 'var(--neutral60)', marginBottom: 3 }}>聯絡資訊</Typography>
@@ -212,7 +215,10 @@ const Information = ({ classes }) => {
                         }
                     </Box>
                     <Box className={classes.infoMapGroup}>
-                        <Avatar src={require('../public/img/png/map.png')} alt='map' variant='square' sx={{ width: '100%', height: 'auto' }} />
+                        {
+                            isLoading ? <Skeleton variant='rectangular' sx={{ width: '100%', height: '100%' }} /> :
+                                <Avatar src={require('../public/img/png/map.png')} alt='map' variant='square' sx={{ width: '100%', height: 'auto' }} />
+                        }
                         <Typography variant='body2' component='a' href='https://www.google.com.tw/maps/place/%E6%88%90%E6%B3%B0%E5%86%B7%E5%87%8D%E7%A9%BA%E8%AA%BF%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8/@23.4750252,120.4328942,19z/data=!4m5!3m4!1s0x346e969db240be1f:0xd347ed10467411c8!8m2!3d23.4750506!4d120.4331484?hl=zh-TW'
                             target='_blank' rel='noreferrer noopener' sx={{ color: 'var(--primary40)', display: 'block', textAlign: 'right', marginTop: '12px' }}>查看google地圖</Typography>
                     </Box>
@@ -223,7 +229,7 @@ const Information = ({ classes }) => {
 }
 // 預約 詢問
 const Contact = ({ classes, theme }) => (
-    <Box sx={{ paddingTop: 7, paddingBottom: 18 }}>
+    <Box sx={{ paddingTop: 7, paddingBottom: 18, animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}` }}>
         <Typography variant='h1' component='h2' className={classes.contactTitle} sx={{ marginBottom: 1 }}>Contact</Typography>
         <Typography variant='subtitle1' sx={{ color: 'var(--neutral60)', marginBottom: 6 }}>預約 / 詢問</Typography>
         <Grid container flexDirection='column' sx={{ marginBottom: 7 }}>

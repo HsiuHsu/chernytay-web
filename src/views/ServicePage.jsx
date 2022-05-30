@@ -1,7 +1,9 @@
 import { Avatar, Box, Stack, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, useTheme } from '@mui/styles'
 import React from 'react'
+import { fadeIn } from '../public/css/animation'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
+
 
 const serviceInfo = [
     {
@@ -86,8 +88,9 @@ const useStyles = makeStyles(theme => ({
 
 function ServicePage() {
     const classes = useStyles()
+    const theme = useTheme()
     return (
-        <ContainerStyles disableGutters className={classes.serviceContainer}>
+        <ContainerStyles disableGutters className={classes.serviceContainer} sx={{ animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}` }}>
             <Typography variant='h1' component='h2' className={classes.pageTitle}>Service</Typography>
             <Typography variant='subtitle1' className={classes.pageSubtitle}>服務項目</Typography>
             <Stack spacing={{ xs: 7, sm: 4.5 }}>

@@ -1,7 +1,10 @@
 import React from 'react'
 import { Card, CardActionArea, CardContent, CardMedia, Skeleton, Typography } from '@mui/material'
+import { useTheme } from '@mui/styles';
+import { fadeIn } from '../public/css/animation';
 
-function WorkImageCard({ imageIsLoading, imgUrl, imgName, galleryTitle, gallerySubtitle }) {
+function WorkImageCard({ isLoading, imgUrl, imgName, galleryTitle, gallerySubtitle }) {
+    const theme = useTheme()
     return (
         <Card elevation={2} sx={{
             height: '100%', borderRadius: 0,
@@ -9,17 +12,18 @@ function WorkImageCard({ imageIsLoading, imgUrl, imgName, galleryTitle, galleryS
         }}>
             <CardActionArea sx={{ height: '100%', justifyContent: 'flex-start' }}>
                 {
-                    imageIsLoading ? (
-                        <Skeleton variant='rectangular' height={250} />
+                    isLoading ? (
+                        <Skeleton variant='rectangular' height={250} sx={{ width: '100%' }} />
                     ) : (
                         <CardMedia component='img' height='250'
                             image={require('../public/img/jpg/' + imgUrl + '/' + imgName + '.jpg')}
-                            alt={imgName} />
+                            alt={imgName}
+                            sx={{ animation: `${fadeIn} 300ms ${theme.transitions.easing.easeInOut}` }} />
                     )
                 }
                 <CardContent id={imgName} sx={{ width: '100%' }}>
-                    <Typography gutterBottom variant='h6' component='div' sx={{ color: 'var(--primary40)' }} >{imageIsLoading ? <Skeleton /> : galleryTitle}</Typography>
-                    <Typography gutterBottom variant='body1' component='div' sx={{ color: 'var(--neutral40)' }}>{imageIsLoading ? <Skeleton /> : gallerySubtitle}</Typography>
+                    <Typography gutterBottom variant='h6' component='div' sx={{ color: 'var(--primary40)' }} >{isLoading ? <Skeleton /> : galleryTitle}</Typography>
+                    <Typography gutterBottom variant='body1' component='div' sx={{ color: 'var(--neutral40)' }}>{isLoading ? <Skeleton /> : gallerySubtitle}</Typography>
                 </CardContent>
             </CardActionArea>
         </Card >

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css, keyframes } from '@emotion/react';
 import React, { useState, useEffect } from 'react'
-import { Box, Grid, Stack, Typography } from '@mui/material'
+import { Box, Grid, Skeleton, Stack, Typography } from '@mui/material'
 import { ExpandMoreRounded } from '@mui/icons-material'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
 import { makeStyles, useTheme } from '@mui/styles'
@@ -16,6 +16,7 @@ import workImg5 from '../public/img/jpg/空調維修/水塔散熱材更換後.jp
 import workImg6 from '../public/img/jpg/空調維修/乾燥過濾器更換後.jpg'
 import workImg7 from '../public/img/jpg/空調保養/水塔清洗後1.jpg'
 import workImg8 from '../public/img/jpg/空調保養/分離式室外機保養.jpg'
+import useImgLoading from '../hooks/useImgLoading';
 
 const useStyles = makeStyles(theme => ({
     bgTitle: {
@@ -153,15 +154,12 @@ const WorkInfo = ({ classes }) => {
     )
 }
 const WorkImg = () => {
-    const theme = useTheme()
-    // 計算動畫 opacity
-    const fadeInAmin = () => {
+    const fadeInAmin = () => {    // 計算動畫 opacity
         let arr = []
         for (let i = 0; i <= 8; i++) {
-            let x = (100 / 8) //8張圖片
-            if (i == 0) {
-                arr.push(keyframes`0% {opacity: 1;transform: scale(1);} ${x - 2}% {opacity: 1;} ${x}% {opacity: 0;transform: scale(1.05);}`)
-            } else arr.push(keyframes`0% {opacity: 0;} ${x * i - 2}% {opacity: 1;transform: scale(1);} ${x * (i + 1) - 2}% {opacity: 1;}${x * (i + 1)}% {opacity: 0;} 100% {opacity:0;transform: scale(1.05);}`)
+            let x = (100 / 8)   //8張圖片
+            i == 0 ? arr.push(keyframes`0% {opacity: 1;transform: scale(1);} ${x - 2}% {opacity: 1;} ${x}% {opacity: 0;transform: scale(1.05);}`) :
+                arr.push(keyframes`0% {opacity: 0;} ${x * i - 2}% {opacity: 1;transform: scale(1);} ${x * (i + 1) - 2}% {opacity: 1;}${x * (i + 1)}% {opacity: 0;} 100% {opacity:0;transform: scale(1.05);}`)
         }
         return arr
     }
@@ -200,25 +198,34 @@ const WorkImg = () => {
             anim: fadeIn[0]
         }
     ]
-    return (
-        <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
-            {
-                imgInfos.map((items, i) => (
-                    <Box key={i} sx={{
-                        backgroundImage: `url(${items.img})`,
+    const Img = ({ img, anim, i }) => {
+        const isLoading = useImgLoading()
+        const theme = useTheme()
+        return (
+            <>
+                {isLoading ? <Skeleton variant='rectangular' sx={{ width: '100%', height: '100%' }} /> :
+                    <Box sx={{
+                        backgroundImage: `url(${img})`,
                         zIndex: (i + 1) * 10,
                         position: 'absolute',
                         width: '100%',
                         height: '100%',
                         top: 0,
                         left: 0,
-                        animation: `${items.anim} 30s ${theme.transitions.easing.easeInOut}`,
+                        animation: `${anim} 30s ${theme.transitions.easing.easeInOut}`,
                         opacity: 0,
                         animationIterationCount: 'infinite',
                         backgroundRepeat: 'no-repeat',
                         backgroundSize: 'cover'
-                    }} />
-                ))
+                    }} />}
+            </>
+        )
+    }
+
+    return (
+        <Box sx={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden' }}>
+            {
+                imgInfos.map((items, i) => (<Img img={items.img} anim={items.anim} i={i} key={i} />))
             }
             <Box sx={{
                 backgroundImage: `url(${workImg1})`, width: '100%', height: '100%',

@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 
 const useWidthRwd = () => {
     const [width, setWidth] = useState(document.documentElement.clientWidth)
-    const getWidth = () => setWidth(document.documentElement.clientWidth)
+    const handleWidth = () => setWidth(document.documentElement.clientWidth)
     useEffect(() => {
-        getWidth()
-        window.addEventListener('resize', getWidth);
+        handleWidth()
+        window.addEventListener('resize', handleWidth);
         return (() => {
-            window.removeEventListener('resize', getWidth);
+            window.removeEventListener('resize', handleWidth);
         })
     }, []);
+
     return width;
 }
 

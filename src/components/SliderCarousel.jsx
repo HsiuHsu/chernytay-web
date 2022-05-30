@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import { Box, IconButton, Stack } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+import { Box, IconButton, Skeleton, Stack } from '@mui/material'
 import { ArrowBackIosRounded, ArrowForwardIosRounded } from '@mui/icons-material'
 import slierImg1 from '../public/img/jpg/小型空調/吊隱冷氣線型出風口.jpg'
 import slierImg2 from '../public/img/jpg/大型空調/多聯吊隱室內機.jpg'
 import slierImg3 from '../public/img/jpg/大型空調/方形冷卻水塔.jpg'
 import useWidthRwd from '../hooks/useWidthRwd'
+import useImgLoading from '../hooks/useImgLoading';
 
 const ArrowBtn = ({ direction, handleArrowClick }) => (
     <IconButton onClick={handleArrowClick}
@@ -27,24 +28,27 @@ const ArrowBtn = ({ direction, handleArrowClick }) => (
             },
             '& button': {
                 transform: `translateX(${direction === 'left' ? '-2' : '2'}px)`,
-                '&:focus': {
-                    outline: 0
-                }
             }
         }}>
         {direction === 'right' ? <ArrowForwardIosRounded sx={{ color: 'var(--white)', fontSize: { xs: 16, md: 24 } }} /> : <ArrowBackIosRounded sx={{ color: 'var(--white)', fontSize: { xs: 16, md: 24 } }} />}
     </IconButton>
 )
 const SlideImg = ({ windowWidth, img }) => {
+    const isLoading = useImgLoading()
     return (
-        <Box sx={{
-            height: { xs: 500, lg: '100vh' },
-            width: windowWidth,
-            backgroundImage: `url(${img})`,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center'
-        }} />
+        <>
+            {
+                isLoading ? <Skeleton variant='rectangular' sx={{ width: windowWidth, height: '100%' }} /> :
+                    <Box sx={{
+                        height: { xs: 500, lg: '100vh' },
+                        width: windowWidth,
+                        backgroundImage: `url(${img})`,
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'center'
+                    }} />
+            }
+        </>
     )
 }
 const SlideDot = ({ content, activeIndex, slider, setSlider, windowWidth }) => {
@@ -84,43 +88,36 @@ const SlideDot = ({ content, activeIndex, slider, setSlider, windowWidth }) => {
 }
 
 function SliderCarousel() {
-    const sliderWidth = useWidthRwd()
     const content = [slierImg1, slierImg2, slierImg3]
+    const sliderWidth = useWidthRwd()
     const [slider, setSlider] = useState({
         activeIndex: 0, // 當前圖片index
         translate: 0,   // slide width
     })
     const { activeIndex, translate } = slider
-    const autoPlayRef = useRef(null)  //slider auto play
 
     const nextSlide = () => {  // button => next img
-        if (activeIndex === content.length - 1) {
-            return setSlider({ activeIndex: 0, translate: 0 })
-        } else setSlider({ activeIndex: activeIndex + 1, translate: (activeIndex + 1) * sliderWidth })
+        activeIndex === content.length - 1 ? setSlider({ activeIndex: 0, translate: 0 }) :
+            setSlider({ activeIndex: activeIndex + 1, translate: (activeIndex + 1) * sliderWidth })
+
     }
     const preSlide = () => {  // button => pre img
-        if (activeIndex === 0) {
-            return setSlider({ activeIndex: content.length - 1, translate: (content.length - 1) * sliderWidth })
-        } else setSlider({ activeIndex: activeIndex - 1, translate: (activeIndex - 1) * sliderWidth })
+        activeIndex === 0 ? setSlider({ activeIndex: content.length - 1, translate: (content.length - 1) * sliderWidth }) :
+            setSlider({ activeIndex: activeIndex - 1, translate: (activeIndex - 1) * sliderWidth })
     }
 
-    //slider auto play
-    useEffect(() => {
-        const resetTimeout = () => {
-            if (autoPlayRef.current) {
-                clearTimeout(autoPlayRef.current)
-            }
-        }
-        resetTimeout();
-        autoPlayRef.current = setTimeout(
-            () => nextSlide(), 3000
-        );
-        return () => resetTimeout()
-    }, [activeIndex]);
+    useEffect(() => {  //slider auto play
+        const handleAutoplay = setInterval(() => nextSlide(), 3000);
+        return () => clearInterval(handleAutoplay);
+    }, [nextSlide]);
+
+    useEffect(() => {  //width change -> first img
+        setSlider({ activeIndex: 0, translate: 0 })
+    }, [sliderWidth])
 
     return (
         <Box sx={{
-            display: 'flex', position: 'relative', height: { xs: 500, lg: '100vh' }, maxWidth: sliderWidth, width: '100 % ', margin: '0 auto', overflow: 'hidden'
+            display: 'flex', position: 'relative', height: { xs: 500, lg: '100vh' }, maxWidth: sliderWidth, width: '100% ', margin: '0 auto', overflow: 'hidden'
         }}>
             <Box sx={{
                 transform: `translateX(-${translate}px)`,

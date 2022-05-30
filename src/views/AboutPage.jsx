@@ -2,11 +2,11 @@
 import { jsx, css, keyframes } from '@emotion/react';
 import React from 'react'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
-import { Avatar, Grid, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { useTheme } from '@mui/material/styles';
+import { Avatar, Box, Grid, Typography, Skeleton } from '@mui/material'
+import { makeStyles, useTheme } from '@mui/styles'
 import abilityBackgroundImg from '../public/img/jpg/空調保養/分離式室外機保養.jpg'
-import { fadeIn } from '../public/css/animation';
+import { fadeInAndTransform, fadeIn } from '../public/css/animation';
+import useImgLoading from '../hooks/useImgLoading';
 
 const companyAbility = [
     {
@@ -136,14 +136,11 @@ const useStyles = makeStyles((theme) => ({
 function AboutPage() {
     const classes = useStyles()
     const theme = useTheme()
+    const isLoading = useImgLoading()
     return (
         <>
-            <ContainerStyles disableGutters
-                sx={{
-                    display: 'flex',
-                    animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}`
-                }}>
-                <div style={{ marginTop: '96px', marginBottom: '240px', display: 'flex', alignItems: 'center' }}>
+            <ContainerStyles disableGutters sx={{ display: 'flex', animation: `${fadeInAndTransform} 1000ms ${theme.transitions.easing.easeInOut}` }}>
+                <Box sx={{ marginTop: '96px', marginBottom: '240px', display: 'flex', alignItems: 'center' }}>
                     <Grid container className={classes.aboutContainer} spacing={3}>
                         <Typography variant='h1' component='h2' className={classes.aboutTitle}>About Us</Typography>
                         <Grid item xs={12} sm={9} md={10} className={classes.aboutItems} >
@@ -152,14 +149,20 @@ function AboutPage() {
                                 <Typography variant='body1' component='p' className={classes.aboutTxt}>成泰空調二十年來努力研發空調與熱能共生之複合式技術，此乃創新獨特之先趨，8年前引領變頻節能之創舉，積極研發冷熱共生熱泵，空調工程，『空調系統』同時擁有『變頻』及『監控 』之運用，正所謂一本三效運用擴大，為營運機構降低營運成本及節能減碳之效益。 </Typography>
                             </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} className={classes.aboutImg} sx={{ animation: `${fadeIn} 2000ms ${theme.transitions.easing.easeInOut}` }}>
-                            <Avatar src={require('../public/img/jpg/小型空調/分離式冷氣室外機3.jpg')} variant='square' sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+                        <Grid item xs={12} sm={6} md={4} className={classes.aboutImg} sx={{ animation: `${fadeInAndTransform} 2000ms ${theme.transitions.easing.easeInOut}` }}>
+                            {
+                                isLoading ? <Skeleton variant='rectangular' sx={{ width: '100%', height: '100%' }} /> :
+                                    <Avatar src={require('../public/img/jpg/小型空調/分離式冷氣室外機3.jpg')} variant='square' sx={{ display: 'block', width: '100%', height: '100%', objectFit: 'cover' }} />
+                            }
                         </Grid>
                     </Grid>
-                </div>
+                </Box>
             </ContainerStyles>
-            <div style={{ display: 'flex', position: 'relative' }}>
-                <div style={{ position: 'absolute', width: '100%', height: '274px', backgroundImage: `url(${abilityBackgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'left top', backgroundColor: 'rgba(255,255,255,0.5)', backgroundBlendMode: 'lighten' }} />
+            <Box sx={{ display: 'flex', position: 'relative', animation: `${fadeIn} 2000ms ${theme.transitions.easing.easeInOut} ` }}>
+                {
+                    isLoading ? <Skeleton variant='rectangular' sx={{ position: 'absolute', width: '100%', height: '274px' }} /> :
+                        <Box sx={{ position: 'absolute', width: '100%', height: '274px', backgroundImage: `url(${abilityBackgroundImg})`, backgroundSize: 'cover', backgroundPosition: 'left top', backgroundColor: 'rgba(255,255,255,0.5)', backgroundBlendMode: 'lighten' }} />
+                }
                 <ContainerStyles disableGutters className={classes.abilityContainer}>
                     <Grid container justifyContent='center' sx={{ padding: '127px 0' }}>
                         <Grid item xs={12} sm={10} display='flex' flexDirection={{ xs: 'column', md: 'row' }} className={classes.abilityGroup}>
@@ -176,7 +179,7 @@ function AboutPage() {
                         </Grid>
                     </Grid>
                 </ContainerStyles>
-            </div>
+            </Box>
         </>
     )
 }

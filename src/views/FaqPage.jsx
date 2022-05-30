@@ -2,8 +2,9 @@ import React from 'react'
 import QuestionCard from '../components/QuestionCard'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
 import { Button, Grid, Stack, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
+import { makeStyles, useTheme } from '@mui/styles'
 import { faqItems } from '../components/FaqItems'
+import { fadeIn } from '../public/css/animation'
 
 const useStyles = makeStyles((theme) => ({
     faqContainer: {
@@ -49,6 +50,7 @@ const useStyles = makeStyles((theme) => ({
 
 function FaqPage() {
     const classes = useStyles()
+    const theme = useTheme()
     const handleClick = (e) => {
         e.preventDefault()
         const target = e.target.getAttribute('href')
@@ -60,7 +62,7 @@ function FaqPage() {
         })
     }
     return (
-        <Grid className={classes.faqContainer}>
+        <Grid className={classes.faqContainer} sx={{ animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}` }}>
             <ContainerStyles disableGutters >
                 <Typography variant='h1' component='h2' className={classes.faqTitle}>Question</Typography>
                 <Typography variant='subtitle1' className={classes.faqSubtitle}>常見問題</Typography>

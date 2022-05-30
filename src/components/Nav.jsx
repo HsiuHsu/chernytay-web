@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { AppBar, Avatar, Box, Drawer, IconButton, List, ListItem, ListItemText, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Box, Drawer, IconButton, List, Toolbar, Typography } from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import { MenuRounded, CloseRounded } from '@mui/icons-material';
 import { ContainerStyles, NavListItemTypo } from '../utils/useCustomerComponentStyles'
@@ -47,14 +47,6 @@ const useStyles = makeStyles(theme => ({
         },
         [theme.breakpoints.up('md')]: {
             height: 100
-        }
-    },
-    iconState: {
-        [theme.breakpoints.up('xs')]: {
-            display: 'flex',
-        },
-        [theme.breakpoints.up('md')]: {
-            display: 'none'
         }
     },
     listIcon: {
@@ -121,8 +113,8 @@ const ListGroup = ({ getBar, classes, handleMenuItemClick, currentPath, colorSty
 )
 
 //width<905 menu icon
-const MenuIcons = ({ classes, menuIcon, handleMenuIcon, currentPath, colorStyle }) => (
-    <IconButton aria-label='open drawer' edge='start' onClick={handleMenuIcon} className={classes.iconState}>
+const MenuIcons = ({ menuIcon, handleMenuIcon, currentPath, colorStyle }) => (
+    <IconButton aria-label='open drawer' edge='start' onClick={handleMenuIcon} sx={{ display: { xs: 'flex', md: 'none' } }}>
         {
             menuIcon ? <CloseRounded sx={{ fontSize: 24, color: 'var(--neutral20)' }} /> :
                 <MenuRounded sx={{ fontSize: 24, color: currentPath === '/' && colorStyle === true ? 'var(--white)' : 'var(--neutral20)' }} />
@@ -143,9 +135,7 @@ function Nav() {
     const handleOnTop = () => document.documentElement.scrollTo(0, 0) // to top
     const handleMenuItemClick = (getPath) => {  // 點擊切換頁面
         // width<905 關閉選單
-        if (document.documentElement.clientWidth <= 904) {
-            setMenuIcon(false)
-        }
+        document.documentElement.clientWidth <= 904 && setMenuIcon(false)
         navigate(getPath)
         handleOnTop()
     }
@@ -164,15 +154,12 @@ function Nav() {
                 setGetBar(false)
                 setMenuIcon(false)
             }
-            if (document.documentElement.clientWidth < 600) {
-                setCompanyName(false)  // width<600 企業名稱隱藏
-            } else setCompanyName(true)
+            // width<600 企業名稱隱藏
+            document.documentElement.clientWidth < 600 ? setCompanyName(false) : setCompanyName(true)
         }
         showBtn()
         window.addEventListener('resize', showBtn)
-        return () => {
-            window.removeEventListener('resize', showBtn)
-        }
+        return () => window.removeEventListener('resize', showBtn)
     }, [])
     useEffect(() => {  // change home page color (scroll nav)
         const getCurrentScroll = () => { return window.scrollY || document.documentElement.scrollTop }
@@ -182,13 +169,9 @@ function Nav() {
             const windowHeight = document.documentElement.clientHeight
             const windowWidth = document.documentElement.clientWidth
             if (windowWidth > 1239) {
-                if (scroll > windowHeight * 0.9) {
-                    setColorStyle(false)
-                } else setColorStyle(true)
+                scroll > windowHeight * 0.9 ? setColorStyle(false) : setColorStyle(true)
             } else {
-                if (scroll > 400) {
-                    setColorStyle(false)
-                } else setColorStyle(true)
+                scroll > 400 ? setColorStyle(false) : setColorStyle(true)
             }
         }
     }, [])

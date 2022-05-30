@@ -3,10 +3,11 @@ import { jsx, css, keyframes } from '@emotion/react';
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Box, Grid, List, Typography } from '@mui/material'
-import { makeStyles } from '@mui/styles'
-import { useTheme } from '@mui/material/styles';
+import { makeStyles, useTheme } from '@mui/styles'
 import { ContainerStyles } from '../utils/useCustomerComponentStyles'
 import WorkImageCard from '../components/WorkImageCard';
+import useImgLoading from '../hooks/useImgLoading';
+import { fadeIn } from '../public/css/animation';
 
 const workGalleryInfo = [
     {
@@ -122,38 +123,16 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const anim = keyframes`
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-`;
-
 function WorkPage() {
     const classes = useStyles()
     const theme = useTheme()
-    // 圖片加載時
-    const [imageIsLoading, setImageIsLoading] = useState(true);
-    const [image, setImage] = useState({});
-    const handleImageLoaded = () => {
-        setImageIsLoading(false);
-    };
-    // 相簿路徑
-    let navigate = useNavigate()
-    // 圖片加載
-    useEffect(() => {
-        const image = new Image();
-        image.onload = handleImageLoaded;
-        image.src = '/image/分離式冷氣室外機.jpg'
-        setImage(image);
-    }, []);
+    const isLoading = useImgLoading()    // 圖片加載
+    let navigate = useNavigate()    // 相簿路徑
 
     return (
         <>
             <Box sx={{
-                paddingTop: 7, paddingBottom: 19, animation: `${anim} 200ms ${theme.transitions.easing.easeInOut}`,
+                paddingTop: 7, paddingBottom: 19, animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}`,
                 backgroundImage: { xs: 'linear-gradient(180deg, white 20%, rgba(45, 107, 40, 0.3) 0%)', sm: 'linear-gradient(180deg, white 30%, rgba(45, 107, 40, 0.3) 0%)' }
             }}>
                 <ContainerStyles disableGutters>
@@ -165,14 +144,14 @@ function WorkPage() {
                                 <Grid item xs={12} sm={6} xl={4} key={item.imgName} onClick={() => navigate(item.path)}>
                                     <WorkImageCard
                                         imgUrl={item.imgUrl} imgName={item.imgName} galleryTitle={item.imgUrl} gallerySubtitle={item.gallerySubtitle}
-                                        imageIsLoading={imageIsLoading} path={item.path}
+                                        isLoading={isLoading} path={item.path}
                                     />
                                 </Grid>))
                         }
                     </Grid>
                 </ContainerStyles>
             </Box>
-            <Box sx={{ margin: '112px 0', background: 'var(--surface)' }}>
+            <Box sx={{ margin: '112px 0', background: 'var(--surface)', animation: `${fadeIn} 1000ms ${theme.transitions.easing.easeInOut}` }}>
                 <ContainerStyles disableGutters className={classes.customerGroup}>
                     <Typography variant='h1' component='h2' sx={{ position: 'absolute', top: { xs: -24, sm: -40 } }} className={classes.workTitle}>Customer</Typography>
                     <Typography variant='subtitle1' className={classes.workSubtitle}>優質客戶</Typography>

@@ -9,8 +9,8 @@ export const NavListItemTypo = styled(Typography)(({ theme }) => ({
     [theme.breakpoints.up('xs')]: {
         display: 'block',
         textAlign: 'center',
-        paddingTop: 24,
-        paddingBottom: 24
+        paddingTop: 12,
+        paddingBottom: 12,
     },
     [theme.breakpoints.up('md')]: {
         textAlign: 'none',

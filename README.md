@@ -7,6 +7,8 @@ The following is the design in Figma : [cherng-tay](https://www.figma.com/file/q
 ## Tech Stack
 ReactJs, google form
 
+css framework: Material UI(MUI) 
+
 ## Tool Stack
 Design tools: Figma, Adobe Illustrator, Adobe Photoshop
 
